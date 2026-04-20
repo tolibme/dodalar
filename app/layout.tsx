@@ -3,9 +3,9 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'DODALAR | Food as Cultural Memory',
+  title: 'DODALAR | Plov and Osh in Uzbek Cuisine',
   description:
-    'A team project section on how immigrant communities preserve cultural memory and identity through traditional food practices and language.',
+    'A team project website about plov, also known as osh, and how this Uzbek dish preserves memory, hospitality, and cultural identity.',
   generator: 'v0.app',
   icons: {
     icon: [
