@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import {
   ArrowRight,
+  BookOpenText,
   Clock3,
   CookingPot,
+  ExternalLink,
   Flame,
   HandPlatter,
   MapPinned,
@@ -20,7 +22,9 @@ const anchors = [
   { href: '#about', label: 'About Osh' },
   { href: '#heritage', label: 'Heritage' },
   { href: '#ritual', label: 'Ritual' },
+  { href: '/cooking', label: 'Cooking Game' },
   { href: '#team', label: 'Team' },
+  { href: '#references', label: 'Sources' },
 ]
 
 const highlights = [
@@ -30,14 +34,33 @@ const highlights = [
     icon: HandPlatter,
   },
   {
-    title: 'Cooked with meaning',
-    text: 'Rice, carrots, onions, meat, oil, and spices are not only ingredients. They are part of a method families repeat across generations.',
+    title: 'Built in the kazan',
+    text: 'The dish gains its character from the kazan: onions, carrots, meat, oil, rice, garlic, and cumin are layered into a fragrant zirvak before the rice steams.',
     icon: CookingPot,
   },
   {
-    title: 'Shared before it is served',
-    text: 'The dish is strongly social. It belongs to weddings, family gatherings, neighborhood events, and the table where stories are retold.',
+    title: 'Shared before serving',
+    text: 'The dish belongs to weddings, family gatherings, neighborhood events, Friday meals, and the table where stories are retold.',
     icon: Users,
+  },
+]
+
+const flavorFacts = [
+  {
+    label: 'Hospitality',
+    text: 'Travel and food writers repeatedly describe plov as a sign of welcome: a host shows respect by serving a generous platter.',
+  },
+  {
+    label: 'Identity online',
+    text: 'Research on Central Asian food culture shows how plov is discussed as national identity, not just as a cooking technique.',
+  },
+  {
+    label: 'Silk Road roots',
+    text: 'Modern stories often connect plov to exchange across the Silk Road, where rice, spices, and meat traditions moved through cities and markets.',
+  },
+  {
+    label: 'Everyday equality',
+    text: 'Recent reporting emphasizes that plov crosses class lines: rich or poor, Uzbeks recognize it as a common cultural food.',
   },
 ]
 
@@ -57,7 +80,7 @@ const regionalNotes = [
   {
     value: 'Samarkand',
     title: 'Layered identity',
-    text: 'Known for distinct visual layering and a style that preserves the individuality of ingredients, reflecting regional pride and technique.',
+    text: 'Known for distinct visual layering and a style that keeps rice, carrots, and meat visually separate before serving, reflecting regional pride and technique.',
   },
   {
     value: 'Fergana',
@@ -69,7 +92,7 @@ const regionalNotes = [
 const timeline = [
   {
     label: 'Ingredient memory',
-    text: 'Families look for familiar rice, yellow carrots, cumin, and lamb or beef because ingredients connect the present meal to older kitchens.',
+    text: 'Families look for familiar rice, yellow carrots, cumin, garlic, and lamb or beef because ingredients connect the present meal to older kitchens.',
   },
   {
     label: 'Technique memory',
@@ -100,10 +123,78 @@ const faqItems = [
 ]
 
 const teamMembers = [
-  'Add member name 1',
-  'Add member name 2',
-  'Add member name 3',
-  'Add member name 4',
+  'Nurmuxamedov Xurshid',
+  'Xabibullaev Shohjahon',
+  'Kamronbek Yunusov',
+  'Nikolay Tsoy',
+  'Umidjon Normuratov',
+  'Sarvar Sultanov',
+  'Kim Vladimir',
+  'Amirxon Siddiqov',
+  'Tolibjon Olimjonov',
+]
+
+const references = [
+  {
+    author: 'Advantour',
+    date: '2020, August 11',
+    title: 'Uzbek plov: A symbol of Uzbek hospitality',
+    url: 'https://www.advantour.com/uzbekistan/uzbek-food/plov.htm',
+  },
+  {
+    author: 'Anita',
+    date: '2012, February',
+    title: "Plov - Uzbekistan's legendary national dish",
+    url: 'https://www.anitasfeast.com/blog/2012/11/plov-uzbekistans-legendary-national-dish/',
+  },
+  {
+    author: 'Alymbaeva, A. A.',
+    date: '2020, December',
+    title: 'Nations of plov and beshbarmak: Central Asian food and national identity on the internet',
+    url: 'https://www.researchgate.net/publication/338030214_Nations_of_Plov_and_Beshbarmak_Central_Asian_Food_and_National_Identity_on_the_Internet',
+  },
+  {
+    author: 'Cerita Kuliner',
+    date: '2025, April 22',
+    title: 'Uzbek plov lamb and rice pilaf',
+    url: 'https://ceritakuliner.com/uzbek-plov-lamb-and-rice-pilaf/',
+  },
+  {
+    author: 'Islam, S. M. S.',
+    date: '2023, September 22',
+    title: 'From Silk Road treasures to culinary delight: The tale of Uzbek plov',
+    url: 'https://medium.com/@s.m.shahinul.islam/from-silk-road-treasures-to-culinary-delight-the-tale-of-uzbek-plov-d5159a2605c5',
+  },
+  {
+    author: 'Lev-Tov, D.',
+    date: '2023, December 20',
+    title: 'Rich or poor, Uzbeks eat plov: The beloved medley of rice and meat is the national dish of Uzbekistan',
+    url: 'https://www.smithsonianmag.com/travel/rich-or-poor-uzbeks-eat-plov-180983483/',
+  },
+  {
+    author: 'Silas',
+    date: '2025, October 29',
+    title: 'The real reason Uzbek plov is a global sensation',
+    url: 'https://eathealthy365.com/the-real-reason-uzbek-plov-is-a-global-sensation/',
+  },
+  {
+    author: 'Sunder, K.',
+    date: '2026, March 12',
+    title: "Plov nation: How Uzbekistan's signature dish brings people together",
+    url: 'https://oteats.outlooktraveller.com/features/guides/plov-nation-how-uzbekistans-signature-dish-brings-people-together',
+  },
+  {
+    author: 'Uzbek Travel',
+    date: 'n.d.',
+    title: 'Plov: A symbol of Uzbek hospitality',
+    url: 'https://uzbek-travel.com/about-uzbekistan/facts/plov/',
+  },
+  {
+    author: 'YasminaTour',
+    date: '2026, February 25',
+    title: 'Authentic Uzbek plov: Where to experience the best traditional rice pilaf',
+    url: 'https://yasminatour.uz/authentic-uzbek-plov-where-to-experience-the-best-traditional-rice-pilaf/',
+  },
 ]
 
 export default function Home() {
@@ -150,7 +241,8 @@ export default function Home() {
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-foreground/78 md:text-xl">
                 This project focuses on plov, also known as osh, as a signature dish of Uzbek cuisine. It shows how one
-                meal can carry family memory, national identity, and hospitality across generations and across borders.
+                meal can carry family memory, national identity, Silk Road history, and hospitality across generations
+                and across borders.
               </p>
             </div>
           </div>
@@ -247,6 +339,16 @@ export default function Home() {
               etiquette. When families cook it again in another city or country, they do not only repeat a meal. They
               repeat belonging.
             </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {flavorFacts.map((fact) => (
+                <div key={fact.label} className="rounded-2xl border border-black/10 bg-white/60 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--color-spice)]">
+                    {fact.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-foreground/70">{fact.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <Tabs defaultValue="meaning" className="w-full">
@@ -271,7 +373,8 @@ export default function Home() {
                   </div>
                   <p className="text-lg leading-8 text-[color:var(--color-paper-muted)]">
                     Plov appears at celebrations, family meetings, and community events, so it becomes a public sign of Uzbek
-                    identity. It is a dish people remember collectively, not only individually.
+                    identity. Sources describe it as both everyday food and ceremonial food, which is why people remember it
+                    collectively, not only individually.
                   </p>
                 </CardContent>
               </Card>
@@ -285,8 +388,9 @@ export default function Home() {
                     <p className="text-sm uppercase tracking-[0.3em] text-foreground/55">Foundation</p>
                   </div>
                   <p className="text-lg leading-8 text-foreground/78">
-                    Rice, carrots, onions, oil, meat, garlic, and cumin form the recognizable base. The exact balance may
-                    vary, but the identity of the dish remains strong because families preserve the structure of the method.
+                    Rice, carrots, onions, oil, meat, garlic, and cumin form the recognizable base. The exact balance may vary
+                    by region or household, but the identity of the dish remains strong because families preserve the structure
+                    of the method.
                   </p>
                 </CardContent>
               </Card>
@@ -415,6 +519,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="references" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Research base</p>
+            <h2 className="mt-3 font-serif text-5xl leading-none md:text-6xl">References that add flavor</h2>
+          </div>
+          <p className="max-w-xl text-base leading-8 text-foreground/72">
+            These sources support the page&apos;s focus on plov as hospitality, national identity, regional practice,
+            and a dish that brings Uzbek communities together.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {references.map((reference) => (
+            <a
+              key={`${reference.author}-${reference.title}`}
+              href={reference.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-[1.5rem] border border-black/10 bg-white/64 p-5 shadow-[0_16px_46px_rgba(70,43,20,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/82"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex gap-3">
+                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--color-saffron)]/25 text-[color:var(--color-ink)]">
+                    <BookOpenText className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[color:var(--color-spice)]">
+                      {reference.author} <span className="font-normal text-foreground/50">({reference.date})</span>
+                    </p>
+                    <p className="mt-2 text-base font-semibold leading-7 text-foreground/82">{reference.title}</p>
+                  </div>
+                </div>
+                <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-foreground/35 transition-colors group-hover:text-[color:var(--color-spice)]" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section id="team" className="mx-auto max-w-7xl px-5 py-16 md:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
@@ -426,7 +570,7 @@ export default function Home() {
             </p>
             <Separator className="bg-black/10" />
             <p className="text-sm leading-7 text-foreground/62">
-              Replace the placeholder cards with your real group-member names and I can wire them in exactly as you want.
+              The group prepared this project to show how one dish can explain memory, hospitality, and Uzbek identity.
             </p>
           </div>
 
