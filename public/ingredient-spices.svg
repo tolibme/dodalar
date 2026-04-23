@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Cumin and garlic for plov">
+  <rect width="640" height="480" fill="#f5e4c8"/>
+  <circle cx="126" cy="120" r="92" fill="#d6a24c" opacity=".18"/>
+  <circle cx="536" cy="358" r="132" fill="#a4522b" opacity=".12"/>
+  <g transform="translate(130 146)">
+    <ellipse cx="118" cy="138" rx="96" ry="56" fill="#7b522b" opacity=".22"/>
+    <g fill="#fff3df" stroke="#d9c1a0" stroke-width="4">
+      <path d="M64 130c-18-42 18-88 58-82 38 6 52 58 22 96-28 36-66 18-80-14Z"/>
+      <path d="M128 126c-10-48 34-88 78-72 38 14 40 72 0 104-34 28-70 8-78-32Z"/>
+      <path d="M194 132c8-44 58-62 90-34 28 26 10 78-36 92-40 12-62-18-54-58Z"/>
+    </g>
+    <g fill="#68411f">
+      <ellipse cx="282" cy="72" rx="7" ry="20" transform="rotate(-28 282 72)"/>
+      <ellipse cx="308" cy="90" rx="7" ry="20" transform="rotate(20 308 90)"/>
+      <ellipse cx="334" cy="72" rx="7" ry="20" transform="rotate(-12 334 72)"/>
+      <ellipse cx="362" cy="96" rx="7" ry="20" transform="rotate(28 362 96)"/>
+      <ellipse cx="392" cy="78" rx="7" ry="20" transform="rotate(-24 392 78)"/>
+      <ellipse cx="326" cy="128" rx="7" ry="20" transform="rotate(8 326 128)"/>
+      <ellipse cx="372" cy="140" rx="7" ry="20" transform="rotate(-16 372 140)"/>
+    </g>
+  </g>
+  <text x="48" y="76" fill="#241813" font-family="Georgia, serif" font-size="42" font-weight="700">Cumin + garlic</text>
+  <text x="48" y="112" fill="#6f421f" font-family="Segoe UI, sans-serif" font-size="20">The aroma people remember.</text>
+</svg>

@@ -20,6 +20,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const anchors = [
   { href: '#about', label: 'About Osh' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#research-notes', label: 'Research Notes' },
   { href: '#heritage', label: 'Heritage' },
   { href: '#ritual', label: 'Ritual' },
   { href: '/cooking', label: 'Cooking Game' },
@@ -76,16 +78,81 @@ const regionalNotes = [
     value: 'Tashkent',
     title: 'Balanced city style',
     text: 'Often associated with a rich but neat presentation, where each grain of rice stays separate and the dish looks generous without feeling heavy.',
+    image: '/osh-tashkent.svg',
   },
   {
     value: 'Samarkand',
     title: 'Layered identity',
     text: 'Known for distinct visual layering and a style that keeps rice, carrots, and meat visually separate before serving, reflecting regional pride and technique.',
+    image: '/osh-samarkand.svg',
   },
   {
     value: 'Fergana',
     title: 'Deeper roasted flavor',
     text: 'Usually linked to stronger color, fuller richness, and a cooking style that emphasizes depth from oil, meat, and careful heat control.',
+    image: '/osh-fergana.svg',
+  },
+]
+
+const ingredientImages = [
+  {
+    title: 'Rice',
+    text: 'The rice should steam into separate grains instead of becoming mushy.',
+    image: '/ingredient-rice.svg',
+  },
+  {
+    title: 'Carrots',
+    text: 'Carrots give sweetness, color, and the recognizable orange-gold look.',
+    image: '/ingredient-carrots.svg',
+  },
+  {
+    title: 'Meat',
+    text: 'Lamb or beef is browned first so the zirvak becomes rich and deep.',
+    image: '/ingredient-meat.svg',
+  },
+  {
+    title: 'Cumin and garlic',
+    text: 'These aromas make plov instantly recognizable in the kitchen.',
+    image: '/ingredient-spices.svg',
+  },
+]
+
+const researchNotes = [
+  {
+    label: 'UNESCO recognition',
+    title: 'Plov culture is officially heritage',
+    text: 'Uzbekistan succeeded in having plov culture and traditions added to UNESCO Intangible Cultural Heritage in 2016.',
+    source: 'Smithsonian / Outlook Traveller',
+  },
+  {
+    label: 'Rice detail',
+    title: 'Devzira rice matters',
+    text: 'Travel reporting identifies devzira from the Fergana Valley as a prized rice for plov because it absorbs liquid while keeping distinct grains.',
+    source: 'Outlook Traveller',
+  },
+  {
+    label: 'Serving rhythm',
+    title: 'Plov is often a lunch dish',
+    text: 'Several accounts describe plov as commonly served for lunch, with busy restaurants often selling out by mid-afternoon.',
+    source: 'Smithsonian / Outlook Traveller',
+  },
+  {
+    label: 'Tools',
+    title: 'The kaftgir is part of the craft',
+    text: 'Beyond the kazan, festive plov uses a flat metal skimmer called a kaftgir for handling rice and serving from the pot.',
+    source: 'Uzbek Travel / Smithsonian',
+  },
+  {
+    label: 'Occasion changes recipe',
+    title: 'Mood changes the ingredients',
+    text: 'Basic plov may be served at funerals, while weddings and holidays often add chickpeas, raisins, garlic, barberries, quail eggs, or other festive touches.',
+    source: 'Smithsonian',
+  },
+  {
+    label: 'Public scale',
+    title: 'One kazan can feed a crowd',
+    text: 'Large plov centers and events cook in enormous kazans; Tashkent’s Besh Qozon is reported to prepare tons of plov daily.',
+    source: 'Outlook Traveller / Uzbek Travel',
   },
 ]
 
@@ -327,6 +394,68 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="gallery" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+        <div className="mb-9 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Ingredient gallery</p>
+            <h2 className="mt-3 font-serif text-5xl leading-none md:text-6xl">What goes into osh</h2>
+          </div>
+          <p className="max-w-xl text-base leading-8 text-foreground/72">
+            These visual cards show the foundation of Uzbek plov: rice, carrots, meat, cumin, and garlic. Together they
+            become zirvak, aroma, texture, and memory.
+          </p>
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {ingredientImages.map((ingredient) => (
+            <Card
+              key={ingredient.title}
+              className="overflow-hidden rounded-[1.8rem] border-black/10 bg-white/66 py-0 shadow-[0_18px_50px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image src={ingredient.image} alt={`${ingredient.title} illustration`} fill className="object-cover" />
+              </div>
+              <CardHeader className="px-5 pb-2">
+                <CardTitle className="font-serif text-3xl">{ingredient.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="px-5 pb-6 pt-0">
+                <p className="text-sm leading-7 text-foreground/72">{ingredient.text}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section id="research-notes" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+        <div className="grid gap-8 rounded-[2.25rem] border border-black/10 bg-[color:var(--color-ink)] p-6 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.22)] lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
+          <div className="space-y-5">
+            <Badge className="w-fit rounded-full bg-[color:var(--color-saffron)] px-4 py-1.5 text-[color:var(--color-ink)]">
+              From the references
+            </Badge>
+            <h2 className="font-serif text-5xl leading-none md:text-6xl">New details from the research</h2>
+            <p className="text-lg leading-8 text-[color:var(--color-paper-muted)]">
+              The sources add more than ingredients. They show plov as protected heritage, a lunch ritual, a craft with
+              special tools, and a public dish scaled from family tables to huge city plov centers.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {researchNotes.map((note) => (
+              <div key={note.title} className="rounded-[1.4rem] border border-white/10 bg-white/7 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[color:var(--color-saffron)]">
+                  {note.label}
+                </p>
+                <h3 className="mt-3 font-serif text-2xl leading-tight">{note.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[color:var(--color-paper-muted)]">{note.text}</p>
+                <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[color:var(--color-paper-muted)]">
+                  Source: {note.source}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="heritage" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
         <div className="grid gap-8 rounded-[2.25rem] border border-black/10 bg-white/58 p-6 shadow-[0_22px_70px_rgba(70,43,20,0.06)] lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
           <div className="space-y-5">
@@ -480,7 +609,10 @@ export default function Home() {
 
         <div className="grid gap-5 lg:grid-cols-3">
           {regionalNotes.map((note) => (
-            <Card key={note.value} className="rounded-[1.9rem] border-black/10 bg-white/65 shadow-[0_20px_60px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1">
+            <Card key={note.value} className="overflow-hidden rounded-[1.9rem] border-black/10 bg-white/65 py-0 shadow-[0_20px_60px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image src={note.image} alt={`${note.value} osh illustration`} fill className="object-cover" />
+              </div>
               <CardHeader className="space-y-4 px-6">
                 <Badge className="w-fit rounded-full bg-[color:var(--color-saffron)]/85 px-3 py-1 text-[color:var(--color-ink)]">
                   {note.value}

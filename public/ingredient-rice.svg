@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Rice for plov">
+  <rect width="640" height="480" fill="#f6ead8"/>
+  <circle cx="520" cy="80" r="92" fill="#d6a24c" opacity=".22"/>
+  <circle cx="134" cy="396" r="120" fill="#a4522b" opacity=".12"/>
+  <ellipse cx="320" cy="296" rx="220" ry="86" fill="#6f421f" opacity=".2"/>
+  <path d="M148 246c30 108 314 132 344 0H148Z" fill="#8d5322"/>
+  <path d="M148 246c0 68 344 68 344 0s-344-68-344 0Z" fill="#b8742a"/>
+  <ellipse cx="320" cy="236" rx="148" ry="44" fill="#fff8ed"/>
+  <g fill="#efe2c8" stroke="#dcc8a7" stroke-width="3">
+    <ellipse cx="226" cy="226" rx="18" ry="7" transform="rotate(-18 226 226)"/>
+    <ellipse cx="278" cy="244" rx="18" ry="7" transform="rotate(12 278 244)"/>
+    <ellipse cx="330" cy="220" rx="18" ry="7" transform="rotate(-8 330 220)"/>
+    <ellipse cx="386" cy="242" rx="18" ry="7" transform="rotate(16 386 242)"/>
+    <ellipse cx="416" cy="216" rx="18" ry="7" transform="rotate(-22 416 216)"/>
+    <ellipse cx="246" cy="256" rx="18" ry="7" transform="rotate(20 246 256)"/>
+    <ellipse cx="352" cy="260" rx="18" ry="7" transform="rotate(-16 352 260)"/>
+  </g>
+  <text x="48" y="76" fill="#241813" font-family="Georgia, serif" font-size="42" font-weight="700">Rice</text>
+  <text x="48" y="112" fill="#6f421f" font-family="Segoe UI, sans-serif" font-size="20">Separate grains are the goal.</text>
+</svg>

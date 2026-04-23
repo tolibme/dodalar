@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Tashkent style osh">
+  <rect width="640" height="480" fill="#f7e6cc"/>
+  <circle cx="526" cy="92" r="112" fill="#d6a24c" opacity=".18"/>
+  <circle cx="116" cy="392" r="132" fill="#a4522b" opacity=".12"/>
+  <ellipse cx="320" cy="282" rx="232" ry="92" fill="#6f421f" opacity=".22"/>
+  <ellipse cx="320" cy="248" rx="214" ry="96" fill="#f7efe1" stroke="#8d5322" stroke-width="12"/>
+  <g fill="#e1a13d">
+    <rect x="188" y="218" width="190" height="16" rx="8" transform="rotate(8 188 218)"/>
+    <rect x="236" y="254" width="168" height="15" rx="8" transform="rotate(-7 236 254)"/>
+    <rect x="286" y="202" width="148" height="14" rx="7" transform="rotate(18 286 202)"/>
+  </g>
+  <g fill="#8d3e2b">
+    <circle cx="248" cy="228" r="24"/>
+    <circle cx="376" cy="254" r="26"/>
+    <circle cx="334" cy="212" r="20"/>
+  </g>
+  <g fill="#f4dfbc">
+    <circle cx="292" cy="246" r="6"/>
+    <circle cx="318" cy="262" r="6"/>
+    <circle cx="352" cy="234" r="6"/>
+    <circle cx="402" cy="224" r="6"/>
+    <circle cx="226" cy="266" r="6"/>
+  </g>
+  <text x="48" y="78" fill="#241813" font-family="Georgia, serif" font-size="42" font-weight="700">Tashkent osh</text>
+  <text x="48" y="114" fill="#6f421f" font-family="Segoe UI, sans-serif" font-size="20">Balanced, generous, city style.</text>
+</svg>
