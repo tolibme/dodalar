@@ -31,18 +31,18 @@ const anchors = [
 
 const highlights = [
   {
-    title: 'National comfort food',
-    text: 'Plov, also called osh, is one of the most recognizable dishes in Uzbek cuisine and is tied to hospitality, celebration, and everyday memory.',
+    title: 'National culinary symbol',
+    text: 'Plov, also referred to as osh, is among the most recognizable dishes in Uzbek cuisine and is closely associated with hospitality, celebration, and collective memory.',
     icon: HandPlatter,
   },
   {
-    title: 'Built in the kazan',
-    text: 'The dish gains its character from the kazan: onions, carrots, meat, oil, rice, garlic, and cumin are layered into a fragrant zirvak before the rice steams.',
+    title: 'Prepared through the kazan tradition',
+    text: 'The dish derives much of its sensory and cultural character from the kazan, where onions, carrots, meat, oil, rice, garlic, and cumin are structured into zirvak before the rice is steamed.',
     icon: CookingPot,
   },
   {
-    title: 'Shared before serving',
-    text: 'The dish belongs to weddings, family gatherings, neighborhood events, Friday meals, and the table where stories are retold.',
+    title: 'Embedded in communal practice',
+    text: 'The dish is strongly connected to weddings, family gatherings, neighborhood events, Friday meals, and shared tables where social memory is reproduced.',
     icon: Users,
   },
 ]
@@ -50,46 +50,46 @@ const highlights = [
 const flavorFacts = [
   {
     label: 'Hospitality',
-    text: 'Travel and food writers repeatedly describe plov as a sign of welcome: a host shows respect by serving a generous platter.',
+    text: 'Travel and food writers frequently interpret plov as a sign of welcome, in which the generous serving of the dish communicates respect toward guests.',
   },
   {
     label: 'Identity online',
-    text: 'Research on Central Asian food culture shows how plov is discussed as national identity, not just as a cooking technique.',
+    text: 'Scholarship on Central Asian food culture demonstrates that plov is discussed as an expression of national identity rather than merely as a culinary technique.',
   },
   {
     label: 'Silk Road roots',
-    text: 'Modern stories often connect plov to exchange across the Silk Road, where rice, spices, and meat traditions moved through cities and markets.',
+    text: 'Contemporary narratives often situate plov within Silk Road exchange, where rice, spices, and meat-based culinary practices circulated through cities and markets.',
   },
   {
     label: 'Everyday equality',
-    text: 'Recent reporting emphasizes that plov crosses class lines: rich or poor, Uzbeks recognize it as a common cultural food.',
+    text: 'Recent reporting emphasizes that plov transcends class distinctions, as Uzbeks across socioeconomic positions recognize it as a shared cultural food.',
   },
 ]
 
 const memoryThreads = [
-  'The name "osh" stays in daily speech even when families move abroad.',
-  'Cooking instructions are often taught by watching elders instead of reading recipes.',
-  'The aroma of frying onions, carrots, and cumin becomes a memory trigger for home.',
-  'Serving plov to guests reflects Uzbek values of welcome, generosity, and respect.',
+  'The term "osh" often remains in everyday speech even after families migrate abroad.',
+  'Cooking knowledge is frequently transmitted through observation of elders rather than through written recipes.',
+  'The aroma of frying onions, carrots, and cumin can function as a sensory trigger for memories of home.',
+  'The practice of serving plov to guests reflects Uzbek values of welcome, generosity, and respect.',
 ]
 
 const regionalNotes = [
   {
     value: 'Tashkent',
-    title: 'Balanced city style',
-    text: 'Often associated with a rich but neat presentation, where each grain of rice stays separate and the dish looks generous without feeling heavy.',
+    title: 'Balanced urban style',
+    text: 'This regional form is often associated with a rich yet orderly presentation, in which the rice grains remain separate and the dish appears abundant without excessive heaviness.',
     image: '/osh-tashkent.svg',
   },
   {
     value: 'Samarkand',
-    title: 'Layered identity',
-    text: 'Known for distinct visual layering and a style that keeps rice, carrots, and meat visually separate before serving, reflecting regional pride and technique.',
+    title: 'Layered regional identity',
+    text: 'This style is known for distinct visual layering, with rice, carrots, and meat often remaining visually separate before serving, thereby reflecting regional pride and technical specificity.',
     image: '/osh-samarkand.svg',
   },
   {
     value: 'Fergana',
-    title: 'Deeper roasted flavor',
-    text: 'Usually linked to stronger color, fuller richness, and a cooking style that emphasizes depth from oil, meat, and careful heat control.',
+    title: 'Intensified roasted flavor',
+    text: 'This variation is commonly associated with stronger color, greater richness, and a cooking method that emphasizes flavor depth through oil, meat, and careful heat control.',
     image: '/osh-fergana.svg',
   },
 ]
@@ -97,22 +97,22 @@ const regionalNotes = [
 const ingredientImages = [
   {
     title: 'Rice',
-    text: 'The rice should steam into separate grains instead of becoming mushy.',
+    text: 'The rice is expected to steam into distinct grains rather than forming a dense or mushy texture.',
     image: '/ingredient-rice.svg',
   },
   {
     title: 'Carrots',
-    text: 'Carrots give sweetness, color, and the recognizable orange-gold look.',
+    text: 'Carrots contribute sweetness, color, and the recognizable orange-gold appearance of the dish.',
     image: '/ingredient-carrots.svg',
   },
   {
     title: 'Meat',
-    text: 'Lamb or beef is browned first so the zirvak becomes rich and deep.',
+    text: 'Lamb or beef is browned at an early stage in order to develop a rich and concentrated zirvak.',
     image: '/ingredient-meat.svg',
   },
   {
     title: 'Cumin and garlic',
-    text: 'These aromas make plov instantly recognizable in the kitchen.',
+    text: 'These aromatics contribute to the sensory profile through which plov becomes immediately recognizable.',
     image: '/ingredient-spices.svg',
   },
 ]
@@ -120,38 +120,38 @@ const ingredientImages = [
 const researchNotes = [
   {
     label: 'UNESCO recognition',
-    title: 'Plov culture is officially heritage',
-    text: 'Uzbekistan succeeded in having plov culture and traditions added to UNESCO Intangible Cultural Heritage in 2016.',
+    title: 'Plov culture has formal heritage recognition',
+    text: 'Uzbekistan successfully secured the inscription of plov culture and traditions on the UNESCO Intangible Cultural Heritage list in 2016.',
     source: 'Smithsonian / Outlook Traveller',
   },
   {
     label: 'Rice detail',
-    title: 'Devzira rice matters',
-    text: 'Travel reporting identifies devzira from the Fergana Valley as a prized rice for plov because it absorbs liquid while keeping distinct grains.',
+    title: 'Devzira rice has culinary significance',
+    text: 'Travel reporting identifies devzira rice from the Fergana Valley as a valued variety for plov because it absorbs liquid while maintaining distinct grains.',
     source: 'Outlook Traveller',
   },
   {
     label: 'Serving rhythm',
-    title: 'Plov is often a lunch dish',
-    text: 'Several accounts describe plov as commonly served for lunch, with busy restaurants often selling out by mid-afternoon.',
+    title: 'Plov is frequently associated with lunch',
+    text: 'Several accounts describe plov as commonly served at lunchtime, with busy restaurants often exhausting their supply by mid-afternoon.',
     source: 'Smithsonian / Outlook Traveller',
   },
   {
     label: 'Tools',
-    title: 'The kaftgir is part of the craft',
-    text: 'Beyond the kazan, festive plov uses a flat metal skimmer called a kaftgir for handling rice and serving from the pot.',
+    title: 'The kaftgir forms part of the culinary apparatus',
+    text: 'In addition to the kazan, festive plov preparation may involve a flat metal skimmer called a kaftgir, which is used for handling rice and serving from the pot.',
     source: 'Uzbek Travel / Smithsonian',
   },
   {
     label: 'Occasion changes recipe',
-    title: 'Mood changes the ingredients',
-    text: 'Basic plov may be served at funerals, while weddings and holidays often add chickpeas, raisins, garlic, barberries, quail eggs, or other festive touches.',
+    title: 'Occasion influences ingredient selection',
+    text: 'Basic plov may be served at funerals, whereas weddings and holidays often incorporate chickpeas, raisins, garlic, barberries, quail eggs, or other festive additions.',
     source: 'Smithsonian',
   },
   {
     label: 'Public scale',
-    title: 'One kazan can feed a crowd',
-    text: 'Large plov centers and events cook in enormous kazans; Tashkent’s Besh Qozon is reported to prepare tons of plov daily.',
+    title: 'One kazan can support collective consumption',
+    text: "Large plov centers and public events use enormous kazans; Tashkent's Besh Qozon is reported to prepare tons of plov each day.",
     source: 'Outlook Traveller / Uzbek Travel',
   },
 ]
@@ -159,15 +159,15 @@ const researchNotes = [
 const timeline = [
   {
     label: 'Ingredient memory',
-    text: 'Families look for familiar rice, yellow carrots, cumin, garlic, and lamb or beef because ingredients connect the present meal to older kitchens.',
+    text: 'Families often seek familiar rice, yellow carrots, cumin, garlic, and lamb or beef because these ingredients connect the present meal to earlier domestic kitchens.',
   },
   {
     label: 'Technique memory',
-    text: 'The order matters: heating the pot, building the zirvak, layering the rice, and letting steam finish the dish without breaking the grains.',
+    text: 'The sequence is significant: heating the pot, constructing the zirvak, layering the rice, and allowing steam to complete the dish without damaging the grains.',
   },
   {
     label: 'Social memory',
-    text: 'The meal is remembered not only for taste but for who cooked it, who gathered around it, and what story was told with it.',
+    text: 'The meal is remembered not only for taste but also for the cook, the social gathering, and the narratives associated with its preparation and consumption.',
   },
 ]
 
@@ -175,17 +175,17 @@ const faqItems = [
   {
     question: 'Why is plov important in Uzbek culture?',
     answer:
-      'Plov is more than a recipe. It represents hospitality, celebration, care for guests, and continuity between generations. Because it appears at weddings, holidays, and ordinary family meals, it becomes a cultural symbol rather than just a dish.',
+      'Plov functions as more than a recipe. It represents hospitality, celebration, care for guests, and intergenerational continuity. Because it appears at weddings, holidays, and ordinary family meals, it operates as a cultural symbol rather than simply as a dish.',
   },
   {
     question: 'Why is it also called osh?',
     answer:
-      'Osh is a widely used Uzbek name for the dish. Keeping the original word matters because language is part of cultural memory. Even when families live abroad, saying osh instead of a translated name keeps the cultural connection direct.',
+      'Osh is a widely used Uzbek term for the dish. Retaining the original word is significant because language forms part of cultural memory. Even when families live abroad, using osh rather than a translated term maintains a direct cultural connection.',
   },
   {
     question: 'How does plov preserve identity through immigration?',
     answer:
-      'When immigrant families keep cooking plov, they preserve ingredient choices, cooking vocabulary, serving customs, and family roles. That turns one meal into a practical way to keep Uzbek identity visible in a new country.',
+      'When immigrant families continue preparing plov, they preserve ingredient choices, cooking vocabulary, serving customs, and family roles. In this way, a single meal becomes a practical mechanism for maintaining Uzbek identity in a new national context.',
   },
 ]
 
@@ -272,15 +272,15 @@ export default function Home() {
         <div className="grain-overlay absolute inset-0 opacity-30" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-black/10 bg-background/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-          <div className="space-y-1">
+      <header className="nav-glass fixed inset-x-0 top-0 z-[100] border-b border-black/10 bg-background/80 backdrop-blur-2xl">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
+          <div className="min-w-0 space-y-1">
             <p className="text-[10px] uppercase tracking-[0.45em] text-foreground/60">Uzbek Cuisine Project</p>
             <p className="font-serif text-2xl leading-none">DODALAR</p>
           </div>
-          <nav className="hidden items-center gap-6 text-sm md:flex">
+          <nav className="flex w-full items-center gap-3 overflow-x-auto pb-1 text-xs sm:text-sm md:w-auto md:gap-6 md:overflow-visible md:pb-0">
             {anchors.map((anchor) => (
-              <a key={anchor.href} href={anchor.href} className="transition-opacity hover:opacity-60">
+              <a key={anchor.href} href={anchor.href} className="magnetic-link shrink-0 transition-opacity hover:opacity-70">
                 {anchor.label}
               </a>
             ))}
@@ -288,7 +288,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-16 pt-8 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pt-14">
+      <section className="mx-auto grid max-w-7xl gap-10 px-4 pb-14 pt-40 sm:px-5 md:px-8 md:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pt-36">
         <div className="flex flex-col justify-between">
           <div className="animate-enter space-y-6">
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-foreground/70">
@@ -302,19 +302,19 @@ export default function Home() {
 
             <div className="space-y-4">
               <p className="text-sm uppercase tracking-[0.35em] text-[color:var(--color-spice)]">Food Hunters presentation</p>
-              <h1 className="max-w-4xl font-serif text-6xl leading-[0.92] tracking-[-0.045em] md:text-8xl lg:text-[8.4rem]">
+              <h1 className="max-w-4xl break-words font-serif text-[clamp(3.4rem,18vw,5.9rem)] leading-[0.92] tracking-[-0.045em] md:text-8xl lg:text-[8.4rem]">
                 Plov is
                 <span className="block text-[color:var(--color-spice)]">Uzbek memory</span>
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-foreground/78 md:text-xl">
-                This project focuses on plov, also known as osh, as a signature dish of Uzbek cuisine. It shows how one
-                meal can carry family memory, national identity, Silk Road history, and hospitality across generations
-                and across borders.
+              <p className="max-w-2xl text-base leading-7 text-foreground/78 sm:text-lg sm:leading-8 md:text-xl">
+                This project examines plov, also known as osh, as a signature dish of Uzbek cuisine. It analyzes how a
+                single meal can transmit family memory, national identity, Silk Road history, and hospitality across
+                generations and geographic borders.
               </p>
             </div>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card className="animate-enter-delayed rounded-[1.75rem] border-black/10 bg-white/72 shadow-[0_20px_60px_rgba(70,43,20,0.08)]">
               <CardHeader className="px-5 pb-0">
                 <CardDescription className="text-xs uppercase tracking-[0.28em] text-foreground/55">
@@ -322,7 +322,7 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-5 pt-4">
-                <p className="text-2xl font-semibold">Plov as cultural identity</p>
+                <p className="text-xl font-semibold sm:text-2xl">Plov as cultural identity</p>
               </CardContent>
             </Card>
 
@@ -333,7 +333,7 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-5 pt-4">
-                <p className="text-2xl font-semibold">Tradition, ritual, migration</p>
+                <p className="text-xl font-semibold sm:text-2xl">Tradition, ritual, migration</p>
               </CardContent>
             </Card>
 
@@ -344,23 +344,25 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-5 pt-4">
-                <p className="text-2xl font-semibold">DODALAR / Food Hunters</p>
+                <p className="text-xl font-semibold sm:text-2xl">DODALAR / Food Hunters</p>
               </CardContent>
             </Card>
           </div>
         </div>
 
         <div className="relative animate-float">
+          <div className="aurora-orb absolute -left-16 -top-10 h-56 w-56 rounded-full bg-[color:var(--color-saffron)]/30 blur-3xl" />
+          <div className="aurora-orb-reverse absolute -bottom-10 -right-16 h-60 w-60 rounded-full bg-[color:var(--color-spice)]/24 blur-3xl" />
           <div className="absolute -left-4 top-10 h-36 w-36 rounded-full bg-[color:var(--color-saffron)]/35 blur-3xl" />
           <div className="absolute -right-4 bottom-12 h-40 w-40 rounded-full bg-[color:var(--color-spice)]/25 blur-3xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[color:var(--color-ink)] p-3 shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
+          <div className="shimmer-border relative overflow-hidden rounded-[2rem] border border-black/10 bg-[color:var(--color-ink)] p-3 shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem]">
               <Image src="/food-memory-hero.jpg" alt="Traditional Uzbek-style meal shared at the table" fill className="object-cover" priority />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,12,9,0.08),_rgba(18,12,9,0.68))]" />
               <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 text-[color:var(--color-paper)]">
                 <Badge className="rounded-full bg-[color:var(--color-saffron)] text-[color:var(--color-ink)]">Signature dish</Badge>
                 <p className="max-w-sm font-serif text-3xl leading-tight">
-                  A plate of osh can represent home, family rhythm, and Uzbek hospitality at once.
+                  A plate of osh can simultaneously represent home, family rhythm, and Uzbek hospitality.
                 </p>
               </div>
             </div>
@@ -368,7 +370,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="mx-auto max-w-7xl px-5 py-10 md:px-8">
+      <section id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-5 md:px-8">
         <div className="grid gap-5 md:grid-cols-3">
           {highlights.map((highlight, index) => {
             const Icon = highlight.icon
@@ -376,7 +378,7 @@ export default function Home() {
             return (
               <Card
                 key={highlight.title}
-                className="rounded-[1.8rem] border-black/10 bg-white/68 shadow-[0_18px_50px_rgba(70,43,20,0.06)]"
+                className="motion-card reveal-stack rounded-[1.8rem] border-black/10 bg-white/68 shadow-[0_18px_50px_rgba(70,43,20,0.06)]"
                 style={{ animationDelay: `${index * 120}ms` }}
               >
                 <CardHeader className="space-y-4 px-6">
@@ -394,15 +396,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+      <section id="gallery" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
         <div className="mb-9 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Ingredient gallery</p>
-            <h2 className="mt-3 font-serif text-5xl leading-none md:text-6xl">What goes into osh</h2>
+            <h2 className="mt-3 font-serif text-[clamp(2.75rem,12vw,4.5rem)] leading-none md:text-6xl">Constituent elements of osh</h2>
           </div>
-          <p className="max-w-xl text-base leading-8 text-foreground/72">
-            These visual cards show the foundation of Uzbek plov: rice, carrots, meat, cumin, and garlic. Together they
-            become zirvak, aroma, texture, and memory.
+          <p className="max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
+            These visual cards identify the foundational components of Uzbek plov: rice, carrots, meat, cumin, and
+            garlic. Together, these ingredients produce zirvak, aroma, texture, and culinary memory.
           </p>
         </div>
 
@@ -410,7 +412,7 @@ export default function Home() {
           {ingredientImages.map((ingredient) => (
             <Card
               key={ingredient.title}
-              className="overflow-hidden rounded-[1.8rem] border-black/10 bg-white/66 py-0 shadow-[0_18px_50px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1"
+              className="motion-card reveal-stack overflow-hidden rounded-[1.8rem] border-black/10 bg-white/66 py-0 shadow-[0_18px_50px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image src={ingredient.image} alt={`${ingredient.title} illustration`} fill className="object-cover" />
@@ -426,16 +428,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="research-notes" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
-        <div className="grid gap-8 rounded-[2.25rem] border border-black/10 bg-[color:var(--color-ink)] p-6 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.22)] lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
+      <section id="research-notes" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
+        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-[color:var(--color-ink)] p-4 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.22)] sm:rounded-[2.25rem] sm:p-6 lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
           <div className="space-y-5">
             <Badge className="w-fit rounded-full bg-[color:var(--color-saffron)] px-4 py-1.5 text-[color:var(--color-ink)]">
               From the references
             </Badge>
-            <h2 className="font-serif text-5xl leading-none md:text-6xl">New details from the research</h2>
-            <p className="text-lg leading-8 text-[color:var(--color-paper-muted)]">
-              The sources add more than ingredients. They show plov as protected heritage, a lunch ritual, a craft with
-              special tools, and a public dish scaled from family tables to huge city plov centers.
+            <h2 className="font-serif text-[clamp(2.75rem,12vw,4.5rem)] leading-none md:text-6xl">Key findings from the research</h2>
+            <p className="text-base leading-7 text-[color:var(--color-paper-muted)] sm:text-lg sm:leading-8">
+              The sources extend the analysis beyond ingredients. They present plov as protected heritage, a lunchtime
+              ritual, a craft involving specialized tools, and a public dish that scales from domestic tables to major
+              urban plov centers.
             </p>
           </div>
 
@@ -456,17 +459,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="heritage" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
-        <div className="grid gap-8 rounded-[2.25rem] border border-black/10 bg-white/58 p-6 shadow-[0_22px_70px_rgba(70,43,20,0.06)] lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
+      <section id="heritage" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
+        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-white/58 p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:rounded-[2.25rem] sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
           <div className="space-y-5">
             <Badge variant="outline" className="rounded-full border-black/10 bg-white/80 px-4 py-1.5">
               Why this dish matters
             </Badge>
-            <h2 className="font-serif text-4xl leading-tight md:text-5xl">Osh is a recipe, but it also works like an archive.</h2>
-            <p className="text-lg leading-8 text-foreground/78">
+            <h2 className="font-serif text-[clamp(2.35rem,10vw,3.75rem)] leading-tight md:text-5xl">Osh functions as both a recipe and a cultural archive.</h2>
+            <p className="text-base leading-7 text-foreground/78 sm:text-lg sm:leading-8">
               In Uzbek households, plov preserves more than flavor. It stores technique, timing, language, and social
-              etiquette. When families cook it again in another city or country, they do not only repeat a meal. They
-              repeat belonging.
+              etiquette. When families prepare it in another city or country, they reproduce not only a meal but also a
+              sense of belonging.
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
               {flavorFacts.map((fact) => (
@@ -501,9 +504,9 @@ export default function Home() {
                     <p className="text-sm uppercase tracking-[0.3em] text-[color:var(--color-paper-muted)]">Cultural role</p>
                   </div>
                   <p className="text-lg leading-8 text-[color:var(--color-paper-muted)]">
-                    Plov appears at celebrations, family meetings, and community events, so it becomes a public sign of Uzbek
-                    identity. Sources describe it as both everyday food and ceremonial food, which is why people remember it
-                    collectively, not only individually.
+                    Plov appears at celebrations, family meetings, and community events; therefore, it becomes a public
+                    sign of Uzbek identity. Sources describe it as both everyday food and ceremonial food, which explains
+                    why it is remembered collectively as well as individually.
                   </p>
                 </CardContent>
               </Card>
@@ -517,9 +520,9 @@ export default function Home() {
                     <p className="text-sm uppercase tracking-[0.3em] text-foreground/55">Foundation</p>
                   </div>
                   <p className="text-lg leading-8 text-foreground/78">
-                    Rice, carrots, onions, oil, meat, garlic, and cumin form the recognizable base. The exact balance may vary
-                    by region or household, but the identity of the dish remains strong because families preserve the structure
-                    of the method.
+                    Rice, carrots, onions, oil, meat, garlic, and cumin form the recognizable base. Although the exact
+                    balance may vary by region or household, the identity of the dish remains stable because families
+                    preserve the structure of the method.
                   </p>
                 </CardContent>
               </Card>
@@ -533,8 +536,8 @@ export default function Home() {
                     <p className="text-sm uppercase tracking-[0.3em] text-foreground/55">Diaspora link</p>
                   </div>
                   <p className="text-lg leading-8 text-foreground/78">
-                    In migration, ingredient substitutions may happen, but the ritual stays. That is why plov becomes a stable
-                    marker of Uzbek identity even when geography changes.
+                    In migration contexts, ingredient substitutions may occur, but the ritual structure often remains.
+                    For this reason, plov becomes a stable marker of Uzbek identity even when geographic location changes.
                   </p>
                 </CardContent>
               </Card>
@@ -543,15 +546,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:px-8 lg:grid-cols-[0.88fr_1.12fr]">
-        <Card className="rounded-[2rem] border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.24)]">
-          <CardHeader className="space-y-4 border-b border-white/10 px-8 py-8">
+      <section className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-5 md:px-8 lg:grid-cols-[0.88fr_1.12fr]">
+        <Card className="rounded-[1.6rem] border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.24)] sm:rounded-[2rem]">
+          <CardHeader className="space-y-4 border-b border-white/10 px-5 py-6 sm:px-8 sm:py-8">
             <p className="text-xs uppercase tracking-[0.32em] text-[color:var(--color-paper-muted)]">Language and memory</p>
-            <CardTitle className="font-serif text-4xl leading-tight md:text-5xl">
-              The words around plov matter as much as the taste.
+            <CardTitle className="font-serif text-[clamp(2.25rem,10vw,3.75rem)] leading-tight md:text-5xl">
+              The language surrounding plov is as significant as its taste.
             </CardTitle>
           </CardHeader>
-          <CardContent className="px-8 py-8">
+          <CardContent className="px-5 py-6 sm:px-8 sm:py-8">
             <ul className="space-y-4">
               {memoryThreads.map((item) => (
                 <li key={item} className="flex gap-3 text-base leading-7 text-[color:var(--color-paper-muted)]">
@@ -564,13 +567,14 @@ export default function Home() {
         </Card>
 
         <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-black/10">
+          <div className="relative min-h-[18rem] overflow-hidden rounded-[1.6rem] border border-black/10 sm:min-h-[22rem] sm:rounded-[2rem]">
             <Image src="/food-family.jpg" alt="Family preparing food together" fill className="object-cover transition-transform duration-700 hover:scale-105" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(28,17,12,0.08),_rgba(28,17,12,0.64))]" />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white">
               <p className="text-xs uppercase tracking-[0.3em] text-white/70">Family transmission</p>
               <p className="mt-3 max-w-xs text-lg leading-7">
-                Children often learn plov by standing beside parents and grandparents, absorbing timing, smell, and rhythm.
+                Children often learn plov by observing parents and grandparents, thereby absorbing timing, smell, and
+                rhythm through embodied practice.
               </p>
             </div>
           </div>
@@ -581,7 +585,7 @@ export default function Home() {
                 <Clock3 className="h-5 w-5 text-[color:var(--color-spice)]" />
                 <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Cooking logic</p>
               </div>
-              <CardTitle className="font-serif text-3xl leading-tight">Plov is remembered through sequence.</CardTitle>
+              <CardTitle className="font-serif text-3xl leading-tight">Plov is remembered through procedural sequence.</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 px-6 pt-0">
               {timeline.map((step) => (
@@ -595,15 +599,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ritual" className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <section id="ritual" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-16">
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Regional identity</p>
-            <h2 className="mt-3 font-serif text-5xl leading-none md:text-6xl">Different styles, one cultural symbol</h2>
+            <h2 className="mt-3 font-serif text-[clamp(2.75rem,12vw,4.5rem)] leading-none md:text-6xl">Regional variation within a shared cultural symbol</h2>
           </div>
-          <p className="max-w-xl text-base leading-8 text-foreground/72">
-            Regional variations show that Uzbek cuisine is rich and diverse. The dish changes in detail, but the cultural
-            role of plov as a unifying national food remains constant.
+          <p className="max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
+            Regional variations demonstrate the diversity of Uzbek cuisine. Although the dish changes in detail, the
+            cultural role of plov as a unifying national food remains consistent.
           </p>
         </div>
 
@@ -627,14 +631,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-4 md:px-8">
-        <div className="grid gap-8 rounded-[2.2rem] border border-black/10 bg-[rgba(255,250,244,0.8)] p-6 shadow-[0_22px_70px_rgba(70,43,20,0.06)] lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
+      <section className="mx-auto max-w-7xl px-4 py-4 sm:px-5 md:px-8">
+        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-[rgba(255,250,244,0.8)] p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:rounded-[2.2rem] sm:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Quick explanation</p>
-            <h2 className="font-serif text-4xl leading-tight md:text-5xl">Why this topic works for your project</h2>
-            <p className="text-lg leading-8 text-foreground/78">
-              Plov gives you a very clear example of how food preserves identity. It connects memory, family roles, language,
-              hospitality, and national culture in one subject that is easy to explain visually.
+            <h2 className="font-serif text-[clamp(2.35rem,10vw,3.75rem)] leading-tight md:text-5xl">Why this topic is analytically effective</h2>
+            <p className="text-base leading-7 text-foreground/78 sm:text-lg sm:leading-8">
+              Plov provides a clear case study for examining how food preserves identity. It connects memory, family
+              roles, language, hospitality, and national culture within a single subject that can be communicated visually.
             </p>
           </div>
 
@@ -651,15 +655,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="references" className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+      <section id="references" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
         <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Research base</p>
-            <h2 className="mt-3 font-serif text-5xl leading-none md:text-6xl">References that add flavor</h2>
+            <h2 className="mt-3 font-serif text-[clamp(2.75rem,12vw,4.5rem)] leading-none md:text-6xl">References supporting the analysis</h2>
           </div>
-          <p className="max-w-xl text-base leading-8 text-foreground/72">
-            These sources support the page&apos;s focus on plov as hospitality, national identity, regional practice,
-            and a dish that brings Uzbek communities together.
+          <p className="max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
+            These sources support the page&apos;s focus on plov as an expression of hospitality, national identity,
+            regional practice, and communal cohesion within Uzbek communities.
           </p>
         </div>
 
@@ -670,7 +674,7 @@ export default function Home() {
               href={reference.url}
               target="_blank"
               rel="noreferrer"
-              className="group rounded-[1.5rem] border border-black/10 bg-white/64 p-5 shadow-[0_16px_46px_rgba(70,43,20,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/82"
+              className="motion-card group rounded-[1.5rem] border border-black/10 bg-white/64 p-5 shadow-[0_16px_46px_rgba(70,43,20,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/82"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex gap-3">
@@ -691,24 +695,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="team" className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <section id="team" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-16">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Project group</p>
-            <h2 className="font-serif text-5xl md:text-6xl">DODALAR</h2>
-            <p className="text-lg leading-8 text-foreground/76">
-              Also known as Food Hunters. This section is now tailored to your topic about plov, also called osh, in Uzbek
+            <h2 className="font-serif text-[clamp(2.75rem,12vw,4.5rem)] md:text-6xl">DODALAR</h2>
+            <p className="text-base leading-7 text-foreground/76 sm:text-lg sm:leading-8">
+              Also known as Food Hunters, the group examines plov, also called osh, as a significant topic within Uzbek
               cuisine.
             </p>
             <Separator className="bg-black/10" />
             <p className="text-sm leading-7 text-foreground/62">
-              The group prepared this project to show how one dish can explain memory, hospitality, and Uzbek identity.
+              The group prepared this project to demonstrate how one dish can explain memory, hospitality, and Uzbek
+              identity.
             </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {teamMembers.map((member) => (
-              <Card key={member} className="rounded-[1.6rem] border-black/10 bg-white/68 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
+              <Card key={member} className="motion-card rounded-[1.6rem] border-black/10 bg-white/68 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
                 <CardContent className="px-5 py-6">
                   <p className="text-sm uppercase tracking-[0.28em] text-foreground/45">Group member</p>
                   <p className="mt-3 text-xl font-semibold">{member}</p>
@@ -720,7 +725,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-black/10 bg-[rgba(255,248,239,0.82)]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
           <div>
             <p className="text-sm font-semibold">DODALAR | Plov / Osh Project</p>
             <p className="text-sm text-foreground/62">
