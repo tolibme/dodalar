@@ -72,9 +72,9 @@ const cookingSteps = [
 ]
 
 const decoys = [
-  { id: 'stir-rice', label: 'Disrupt the rice layer early', mark: 'X1' },
-  { id: 'add-dessert', label: 'Introduce dessert ingredients first', mark: 'X2' },
-  { id: 'turn-off', label: 'Terminate heat prematurely', mark: 'X3' },
+  { id: 'stir-rice', label: 'Disrupt the rice layer early', mark: 'X1', hint: 'Breaks the grain structure.' },
+  { id: 'add-dessert', label: 'Introduce dessert ingredients first', mark: 'X2', hint: 'Does not belong in osh preparation.' },
+  { id: 'turn-off', label: 'Terminate heat prematurely', mark: 'X3', hint: 'Stops the dish before it develops.' },
 ]
 
 const feedbackByMistake = [
@@ -83,11 +83,30 @@ const feedbackByMistake = [
   'The selected action is close, but Uzbek plov requires careful adherence to procedural order.',
 ]
 
+const optionLayouts = [
+  [1, 0, 2, 3],
+  [2, 3, 0, 1],
+  [3, 1, 2, 0],
+  [0, 2, 1, 3],
+]
+
+const phaseNames = [
+  'Heat control',
+  'Flavor base',
+  'Aromatic layer',
+  'Color and sweetness',
+  'Seasoning',
+  'Rice structure',
+  'Steam finish',
+  'Communal service',
+]
+
 export default function CookingPage() {
   const [stepIndex, setStepIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [mistakes, setMistakes] = useState(0)
-  const [message, setMessage] = useState(cookingSteps[0].instruction)
+  const [feedback, setFeedback] = useState('Start by reading the instruction and choosing the first action.')
+  const [lastResult, setLastResult] = useState<'idle' | 'correct' | 'mistake'>('idle')
   const [completedSteps, setCompletedSteps] = useState<string[]>([])
 
   const currentStep = cookingSteps[stepIndex]
@@ -97,10 +116,11 @@ export default function CookingPage() {
   const heatLevel = Math.max(0, Math.min(100, 25 + stepIndex * 9 - mistakes * 3))
   const aromaLevel = Math.min(100, stepIndex * 13)
   const finalScore = Math.max(0, score - mistakes * 5)
+  const currentPhase = isFinished ? 'Serving' : phaseNames[stepIndex]
 
   const options = isFinished
     ? []
-    : [...cookingSteps.slice(stepIndex, stepIndex + 1), ...decoys].sort((a, b) => a.label.localeCompare(b.label))
+    : optionLayouts[stepIndex % optionLayouts.length].map((index) => [currentStep, ...decoys][index])
 
   function chooseAction(actionId: string) {
     if (isFinished || !currentStep) {
@@ -110,28 +130,31 @@ export default function CookingPage() {
     if (actionId === currentStep.id) {
       setCompletedSteps((steps) => [...steps, currentStep.id])
       setScore((value) => value + 15)
-      setMessage(currentStep.success)
+      setFeedback(currentStep.success)
+      setLastResult('correct')
       setStepIndex((index) => index + 1)
       return
     }
 
     setMistakes((value) => value + 1)
     setScore((value) => Math.max(0, value - 3))
-    setMessage(feedbackByMistake[mistakes % feedbackByMistake.length])
+    setFeedback(feedbackByMistake[mistakes % feedbackByMistake.length])
+    setLastResult('mistake')
   }
 
   function resetGame() {
     setStepIndex(0)
     setScore(0)
     setMistakes(0)
-    setMessage(cookingSteps[0].instruction)
+    setFeedback('Start by reading the instruction and choosing the first action.')
+    setLastResult('idle')
     setCompletedSteps([])
   }
 
   return (
     <main id="main-content" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_8%,_rgba(214,162,76,0.32),_transparent_26%),radial-gradient(circle_at_86%_18%,_rgba(164,82,43,0.2),_transparent_28%),linear-gradient(180deg,_rgba(248,238,222,1),_rgba(238,221,194,1))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_8%,_rgba(214,162,76,0.36),_transparent_25%),radial-gradient(circle_at_86%_18%,_rgba(164,82,43,0.22),_transparent_28%),radial-gradient(circle_at_50%_85%,_rgba(36,24,19,0.12),_transparent_36%),linear-gradient(180deg,_rgba(248,238,222,1),_rgba(238,221,194,1))]" />
         <div className="grain-overlay absolute inset-0 opacity-30" />
       </div>
 
@@ -150,94 +173,59 @@ export default function CookingPage() {
         </div>
       </header>
 
-      <section className="hero-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:pb-14">
-        <div className="space-y-7">
+      <section className="hero-shell grid gap-7 lg:grid-cols-[0.72fr_1.28fr] lg:pb-14">
+        <div className="space-y-6 lg:sticky lg:top-28 lg:self-start">
           <div className="space-y-5">
             <Badge className="rounded-full bg-[color:var(--color-saffron)] px-4 py-1.5 text-[color:var(--color-ink)]">
               Interactive culinary sequence study
             </Badge>
-            <h1 className="break-words font-serif text-[clamp(3.1rem,16vw,5.9rem)] leading-[0.92] tracking-[-0.045em] md:text-8xl">
-              Reconstruct the osh preparation sequence
+            <h1 className="max-w-[9ch] break-words font-serif text-[clamp(3.15rem,15vw,6.6rem)] leading-[0.86] tracking-[-0.055em]">
+              Master the osh sequence
             </h1>
             <p className="max-w-2xl text-base leading-7 text-foreground/76 sm:text-lg sm:leading-8">
-              Reconstruct Uzbek plov step by step by selecting the appropriate action, maintaining heat control, and
-              concluding with communal presentation at the dastarkhan.
+              A focused cooking challenge about order, heat, and patience. Read the prompt, choose the next move,
+              and keep the kazan under control.
             </p>
           </div>
 
+          <div className="grid grid-cols-3 overflow-hidden rounded-[1.45em] border border-black/10 bg-white/68 shadow-[0_20px_70px_rgba(70,43,20,0.08)] backdrop-blur">
+            <StatBlock label="Score" value={finalScore} tone="dark" />
+            <StatBlock label="Progress" value={`${progress}%`} />
+            <StatBlock label="Mistakes" value={mistakes} />
+          </div>
+
           <Card className="surface-card border-black/10 bg-white/62 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
-            <CardHeader className="pb-3">
-              <CardTitle className="font-serif text-2xl">How to play</CardTitle>
-              <CardDescription className="text-foreground/62">
-                Follow the canonical order of osh preparation and finish all eight stages without losing control of the sequence.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
-              <div className="rounded-[1em] border border-black/10 bg-white/70 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-spice)]">Reading the round</p>
-                <p className="mt-2 text-sm leading-6 text-foreground/72">
-                  Use the chef note and the current step label to identify what belongs next in the kazan.
-                </p>
-              </div>
-              <div className="rounded-[1em] border border-black/10 bg-white/70 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-spice)]">Scoring logic</p>
-                <p className="mt-2 text-sm leading-6 text-foreground/72">
-                  Correct actions add points; mistakes reduce the score and disrupt timing, heat, and flow.
-                </p>
-              </div>
+            <CardContent className="space-y-3 p-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-spice)]">Round rule</p>
+              <p className="text-sm leading-6 text-foreground/72">
+                Read the current instruction, then choose the action that should happen immediately next. There are{' '}
+                {remainingSteps} step{remainingSteps === 1 ? '' : 's'} left in the sequence.
+              </p>
             </CardContent>
           </Card>
-
-          <div className="grid gap-4 sm:grid-cols-3">
-            <Card className="surface-card motion-card border-black/10 bg-white/66">
-              <CardContent className="px-5 py-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-foreground/50">Score</p>
-                <p className="mt-2 text-3xl font-semibold">{finalScore}</p>
-                <p className="mt-1 text-sm text-foreground/58">Target: finish with minimal mistakes.</p>
-              </CardContent>
-            </Card>
-            <Card className="surface-card motion-card border-black/10 bg-white/66">
-              <CardContent className="px-5 py-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-foreground/50">Progress</p>
-                <p className="mt-2 text-3xl font-semibold">{progress}%</p>
-                <p className="mt-1 text-sm text-foreground/58">{remainingSteps} step{remainingSteps === 1 ? '' : 's'} remaining.</p>
-              </CardContent>
-            </Card>
-            <Card className="surface-card motion-card border-black/10 bg-[color:var(--color-ink)] text-[color:var(--color-paper)]">
-              <CardContent className="px-5 py-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-paper-muted)]">Mistakes</p>
-                <p className="mt-2 text-3xl font-semibold">{mistakes}</p>
-                <p className="mt-1 text-sm text-[color:var(--color-paper-muted)]">Keep the sequence disciplined.</p>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
-        <Card className="surface-panel shimmer-border relative overflow-hidden gap-0 border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
-          <div className="aurora-orb absolute -left-20 bottom-8 h-56 w-56 rounded-full bg-[color:var(--color-spice)]/20 blur-3xl" />
-          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[color:var(--color-saffron)]/20 blur-3xl" />
-          <CardHeader className="relative border-b border-white/10 px-5 pb-4 pt-3 sm:px-6 sm:pb-5 sm:pt-4 md:px-8">
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div className="min-w-0 flex-1">
-                <div className="mb-3 flex flex-wrap items-center gap-2">
-                  <Badge className="rounded-full bg-[color:var(--color-saffron)] text-[color:var(--color-ink)]">
-                    {isFinished ? 'Completed' : `Step ${stepIndex + 1} of ${cookingSteps.length}`}
+        <Card className="surface-panel shimmer-border relative overflow-hidden gap-0 border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_34px_110px_rgba(37,24,15,0.28)]">
+          <div className="aurora-orb absolute -left-28 bottom-16 h-72 w-72 rounded-full bg-[color:var(--color-spice)]/22 blur-3xl" />
+          <div className="absolute -right-16 -top-14 h-56 w-56 rounded-full bg-[color:var(--color-saffron)]/22 blur-3xl" />
+
+          <div className="relative border-b border-white/10 px-5 py-3 sm:px-7 sm:py-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge className="rounded-full bg-[color:var(--color-saffron)] px-3 py-1 text-[color:var(--color-ink)]">
+                    {isFinished ? 'Ready to serve' : `Step ${stepIndex + 1} / ${cookingSteps.length}`}
                   </Badge>
                   <Badge variant="outline" className="rounded-full border-white/12 bg-white/5 text-[color:var(--color-paper-muted)]">
-                    {progress}% progress
+                    {mistakes === 0 ? 'Clean run' : `${mistakes} correction${mistakes === 1 ? '' : 's'}`}
                   </Badge>
                 </div>
-                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-paper-muted)]">Kazan status</p>
-                <CardTitle className="mt-1 font-serif text-[clamp(2rem,9vw,3.25rem)]">
-                  {isFinished ? 'Osh preparation is complete' : `Step ${stepIndex + 1}: ${currentStep.label}`}
-                </CardTitle>
-                <CardDescription className="mt-3 max-w-2xl text-[color:var(--color-paper-muted)]">
-                  Maintain the traditional order from zirvak to steaming so the final dish stays coherent and recognizable.
-                </CardDescription>
-                <Progress
-                  value={progress}
-                  className="mt-4 h-[0.45em] max-w-xl bg-white/10 [&_[data-slot=progress-indicator]]:bg-[linear-gradient(90deg,_var(--color-saffron),_var(--color-spice))]"
-                />
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-paper-muted)]">Current phase</p>
+                  <CardTitle className="mt-1 font-serif text-[clamp(2.1rem,7vw,4.6rem)] leading-[0.95] tracking-[-0.035em]">
+                    {isFinished ? 'Osh is ready' : currentPhase}
+                  </CardTitle>
+                </div>
               </div>
               <Button
                 onClick={resetGame}
@@ -248,72 +236,72 @@ export default function CookingPage() {
                 Reset
               </Button>
             </div>
-          </CardHeader>
+            <Progress
+              value={progress}
+              className="mt-5 h-[0.55em] bg-white/10 [&_[data-slot=progress-indicator]]:bg-[linear-gradient(90deg,_var(--color-saffron),_var(--color-spice))]"
+            />
+          </div>
 
-          <CardContent className="relative grid gap-7 px-5 py-6 sm:px-6 sm:py-7 md:px-8 lg:grid-cols-[0.86fr_1.14fr]">
+          <CardContent className="relative grid gap-6 px-5 py-5 sm:px-7 sm:py-7 xl:grid-cols-[0.92fr_1.08fr]">
             <div className="space-y-5">
-              <div className="kazan-pulse relative mx-auto flex aspect-square w-full max-w-[18rem] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle,_rgba(214,162,76,0.22),_rgba(87,47,25,0.22)_46%,_rgba(20,13,10,0.8)_68%)] shadow-inner sm:max-w-sm">
-                <div className="absolute inset-8 rounded-full border border-[color:var(--color-saffron)]/30" />
-                <div className="absolute inset-14 rounded-full bg-[radial-gradient(circle,_rgba(164,82,43,0.75),_rgba(36,24,19,0.9))]" />
-                <div className="relative text-center">
-                  <p className="font-serif text-5xl sm:text-7xl">{isFinished ? 'OK' : currentStep.mark}</p>
-                  <p className="mt-3 text-sm uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">
-                    {isFinished ? 'Dastarkhan' : 'Kazan'}
-                  </p>
+              <div className="relative overflow-hidden rounded-[1.65em] border border-white/10 bg-[radial-gradient(circle_at_50%_30%,_rgba(214,162,76,0.18),_rgba(255,255,255,0.06)_34%,_rgba(0,0,0,0.12)_80%)] p-5">
+                <div className="kazan-pulse relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle,_rgba(214,162,76,0.27),_rgba(87,47,25,0.3)_45%,_rgba(20,13,10,0.88)_68%)] shadow-inner">
+                  <div className="absolute inset-[10%] rounded-full border border-[color:var(--color-saffron)]/30" />
+                  <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(214,162,76,0.44),_rgba(164,82,43,0.62)_48%,_rgba(36,24,19,0.92))]" />
+                  <div className="absolute inset-[25%] rounded-full border border-white/8" />
+                  <div className="relative text-center">
+                    <p className="font-serif text-6xl leading-none tracking-[-0.06em] sm:text-8xl">
+                      {isFinished ? '08' : currentStep.mark}
+                    </p>
+                    <p className="mt-3 text-xs uppercase tracking-[0.34em] text-[color:var(--color-paper-muted)]">
+                      {isFinished ? 'Dastarkhan' : 'Kazan'}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
                 <Meter icon={Flame} label="Heat" value={heatLevel} />
                 <Meter icon={Sparkles} label="Aroma" value={aromaLevel} />
                 <Meter icon={Timer} label="Timing" value={Math.max(12, 100 - mistakes * 14)} />
               </div>
-
-              <Card className="surface-card border-white/10 bg-white/6 shadow-none">
-                <CardHeader className="pb-2">
-                  <CardTitle className="font-serif text-2xl">Round summary</CardTitle>
-                  <CardDescription className="text-[color:var(--color-paper-muted)]">
-                    A quick read on the current cooking state.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3 pt-0 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">Current focus</p>
-                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">
-                      {isFinished ? 'Serving and review' : currentStep.label}
-                    </p>
-                  </div>
-                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">Discipline</p>
-                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">
-                      {mistakes === 0 ? 'Clean sequence so far' : `${mistakes} disruption${mistakes === 1 ? '' : 's'}`}
-                    </p>
-                  </div>
-                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">End goal</p>
-                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">Separate grains and communal service.</p>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
             <div className="space-y-5">
-              <Alert className="border-white/10 bg-white/7 text-[color:var(--color-paper)]">
+              <Alert className="rounded-[1.35em] border-white/10 bg-white/8 p-5 text-[color:var(--color-paper)]">
                 <ChefHat className="icon-em text-[color:var(--color-saffron)]" />
                 <AlertTitle className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">
-                  Chef note
+                  Current instruction
                 </AlertTitle>
                 <AlertDescription className="text-[color:var(--color-paper)] [&_p]:text-base [&_p]:leading-7 sm:[&_p]:text-xl sm:[&_p]:leading-8">
                   <p>
                     {isFinished
                       ? 'The sequence has been completed. Serve the plov communally from the central platter.'
-                      : message}
+                      : currentStep.instruction}
                   </p>
                 </AlertDescription>
               </Alert>
 
+              <Alert
+                className={`rounded-[1.35em] p-5 text-[color:var(--color-paper)] ${
+                  lastResult === 'correct'
+                    ? 'border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/12'
+                    : lastResult === 'mistake'
+                      ? 'border-[color:var(--color-spice)]/45 bg-[color:var(--color-spice)]/16'
+                      : 'border-white/10 bg-white/6'
+                }`}
+              >
+                <Sparkles className="icon-em text-[color:var(--color-saffron)]" />
+                <AlertTitle className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">
+                  Last action feedback
+                </AlertTitle>
+                <AlertDescription className="text-[color:var(--color-paper-muted)] [&_p]:leading-7">
+                  <p>{feedback}</p>
+                </AlertDescription>
+              </Alert>
+
               {isFinished ? (
-                <Alert className="border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/14 text-[color:var(--color-paper)]">
+                <Alert className="rounded-[1.35em] border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/14 p-5 text-[color:var(--color-paper)]">
                   <Trophy className="h-5 w-5 text-[color:var(--color-saffron)]" />
                   <AlertTitle className="text-xl font-semibold sm:text-2xl">The osh sequence is complete.</AlertTitle>
                   <AlertDescription className="text-[color:var(--color-paper-muted)] [&_p]:leading-7">
@@ -326,9 +314,9 @@ export default function CookingPage() {
               ) : (
                 <Card className="surface-card border-white/10 bg-white/6 shadow-none">
                   <CardHeader className="pb-3">
-                    <CardTitle className="font-serif text-2xl">Available actions</CardTitle>
+                    <CardTitle className="font-serif text-3xl">Choose the next move</CardTitle>
                     <CardDescription className="text-[color:var(--color-paper-muted)]">
-                      Only one action preserves the authentic sequence at this moment.
+                      One action fits the current instruction. Wrong moves stay playable but cost points.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
@@ -337,12 +325,28 @@ export default function CookingPage() {
                         key={option.id}
                         onClick={() => chooseAction(option.id)}
                         variant="ghost"
-                        className="surface-card motion-card h-auto flex-col items-start border border-white/10 bg-white/8 p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:var(--color-saffron)]/45 hover:bg-white/14 hover:text-[color:var(--color-paper)]"
+                        className="surface-card motion-card group grid h-auto min-h-40 w-full grid-rows-[auto_1fr_auto] items-stretch justify-normal whitespace-normal border border-white/10 bg-white/8 p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:var(--color-saffron)]/45 hover:bg-white/14 hover:text-[color:var(--color-paper)] focus-visible:border-[color:var(--color-saffron)]"
                       >
-                        <Badge className="rounded-full bg-[color:var(--color-saffron)]/18 px-2.5 py-1 font-serif text-base text-[color:var(--color-saffron)] hover:bg-[color:var(--color-saffron)]/18">
-                          {option.mark}
-                        </Badge>
-                        <span className="mt-3 block text-base font-semibold">{option.label}</span>
+                        <span className="flex w-full min-w-0 items-center justify-between gap-3">
+                          <Badge className="rounded-full bg-[color:var(--color-saffron)]/18 px-2.5 py-1 font-serif text-base text-[color:var(--color-saffron)] hover:bg-[color:var(--color-saffron)]/18">
+                            {option.mark}
+                          </Badge>
+                          <span className="shrink-0 text-xs uppercase tracking-[0.22em] text-[color:var(--color-paper-muted)] opacity-70 transition group-hover:opacity-100">
+                            Select
+                          </span>
+                        </span>
+                        <span className="mt-4 block w-full min-w-0 self-start text-wrap text-lg font-semibold leading-tight">
+                          {option.label}
+                        </span>
+                        {'hint' in option ? (
+                          <span className="mt-3 block w-full min-w-0 self-end text-wrap text-sm font-normal leading-5 text-[color:var(--color-paper-muted)]">
+                            {option.hint}
+                          </span>
+                        ) : (
+                          <span className="mt-3 block w-full min-w-0 self-end text-wrap text-sm font-normal leading-5 text-[color:var(--color-paper-muted)]">
+                            Fits the current cooking phase.
+                          </span>
+                        )}
                       </Button>
                     ))}
                   </CardContent>
@@ -353,7 +357,7 @@ export default function CookingPage() {
                 <CardHeader className="pb-3">
                   <CardTitle className="font-serif text-2xl">Sequence tracker</CardTitle>
                   <CardDescription className="text-[color:var(--color-paper-muted)]">
-                    Watch the current position and completed stages as the dish develops.
+                    Completed stages stay highlighted so the user can read the dish as a process.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-2 pt-0">
@@ -364,7 +368,7 @@ export default function CookingPage() {
                     return (
                       <div key={step.id}>
                         <div
-                          className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm ${
+                          className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
                             isDone
                               ? 'border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/12'
                               : isCurrent
@@ -403,9 +407,24 @@ export default function CookingPage() {
   )
 }
 
+function StatBlock({ label, value, tone = 'light' }: { label: string; value: string | number; tone?: 'light' | 'dark' }) {
+  return (
+    <div
+      className={`p-4 text-center sm:p-5 ${
+        tone === 'dark'
+          ? 'bg-[color:var(--color-ink)] text-[color:var(--color-paper)]'
+          : 'border-l border-black/10 text-foreground'
+      }`}
+    >
+      <p className="text-[0.65rem] uppercase tracking-[0.24em] opacity-60">{label}</p>
+      <p className="mt-1 text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{value}</p>
+    </div>
+  )
+}
+
 function Meter({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: number }) {
   return (
-    <div className="space-y-2">
+    <div className="rounded-[1.15em] border border-white/10 bg-white/6 p-4">
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-[color:var(--color-paper-muted)]">
         <span className="flex items-center gap-2">
           <Icon className="icon-em" />
