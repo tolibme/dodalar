@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import {
   ArrowRight,
@@ -13,14 +14,16 @@ import {
 } from 'lucide-react'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { SiteHeader } from '@/components/site-header'
 
 const anchors = [
   { href: '#about', label: 'About Osh' },
-  { href: '#gallery', label: 'Gallery' },
   { href: '#research-notes', label: 'Research Notes' },
   { href: '#heritage', label: 'Heritage' },
   { href: '#ritual', label: 'Ritual' },
@@ -49,20 +52,28 @@ const highlights = [
 
 const flavorFacts = [
   {
-    label: 'Hospitality',
-    text: 'Travel and food writers frequently interpret plov as a sign of welcome, in which the generous serving of the dish communicates respect toward guests.',
+    label: 'Rice',
+    title: 'Structure holds the dish together',
+    text: 'Distinct grains are central to the identity of plov, so rice becomes both a technical and symbolic core of the meal.',
+    image: '/ingredient-rice.svg',
   },
   {
-    label: 'Identity online',
-    text: 'Scholarship on Central Asian food culture demonstrates that plov is discussed as an expression of national identity rather than merely as a culinary technique.',
+    label: 'Carrots',
+    title: 'Color and sweetness signal familiarity',
+    text: 'Yellow or orange carrots contribute the visual warmth and sweetness that many families associate with authentic osh.',
+    image: '/ingredient-carrots.svg',
   },
   {
-    label: 'Silk Road roots',
-    text: 'Contemporary narratives often situate plov within Silk Road exchange, where rice, spices, and meat-based culinary practices circulated through cities and markets.',
+    label: 'Meat',
+    title: 'Depth begins in the zirvak',
+    text: 'Lamb or beef develops roasted flavor early in the process and helps define the communal richness expected from celebratory plov.',
+    image: '/ingredient-meat.svg',
   },
   {
-    label: 'Everyday equality',
-    text: 'Recent reporting emphasizes that plov transcends class distinctions, as Uzbeks across socioeconomic positions recognize it as a shared cultural food.',
+    label: 'Cumin and garlic',
+    title: 'Aroma carries memory',
+    text: 'Spices and aromatics make osh immediately recognizable, linking the meal to household memory long before it reaches the table.',
+    image: '/ingredient-spices.svg',
   },
 ]
 
@@ -78,42 +89,19 @@ const regionalNotes = [
     value: 'Tashkent',
     title: 'Balanced urban style',
     text: 'This regional form is often associated with a rich yet orderly presentation, in which the rice grains remain separate and the dish appears abundant without excessive heaviness.',
-    image: '/osh-tashkent.svg',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Plov%20Tashkent.jpg',
   },
   {
     value: 'Samarkand',
-    title: 'Layered regional identity',
+    title: 'Distinct layered presentation',
     text: 'This style is known for distinct visual layering, with rice, carrots, and meat often remaining visually separate before serving, thereby reflecting regional pride and technical specificity.',
-    image: '/osh-samarkand.svg',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Uzbek%20pilaf%20Samarkand.jpg',
   },
   {
     value: 'Fergana',
     title: 'Intensified roasted flavor',
     text: 'This variation is commonly associated with stronger color, greater richness, and a cooking method that emphasizes flavor depth through oil, meat, and careful heat control.',
-    image: '/osh-fergana.svg',
-  },
-]
-
-const ingredientImages = [
-  {
-    title: 'Rice',
-    text: 'The rice is expected to steam into distinct grains rather than forming a dense or mushy texture.',
-    image: '/ingredient-rice.svg',
-  },
-  {
-    title: 'Carrots',
-    text: 'Carrots contribute sweetness, color, and the recognizable orange-gold appearance of the dish.',
-    image: '/ingredient-carrots.svg',
-  },
-  {
-    title: 'Meat',
-    text: 'Lamb or beef is browned at an early stage in order to develop a rich and concentrated zirvak.',
-    image: '/ingredient-meat.svg',
-  },
-  {
-    title: 'Cumin and garlic',
-    text: 'These aromatics contribute to the sensory profile through which plov becomes immediately recognizable.',
-    image: '/ingredient-spices.svg',
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Farg'onacha%20osh.jpg",
   },
 ]
 
@@ -194,6 +182,7 @@ const teamMembers = [
   'Xabibullaev Shohjahon',
   'Kamronbek Yunusov',
   'Nikolay Tsoy',
+  'Qurbon Bagirov',
   'Umidjon Normuratov',
   'Sarvar Sultanov',
   'Kim Vladimir',
@@ -266,29 +255,15 @@ const references = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main id="main-content" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(191,116,42,0.18),_transparent_30%),radial-gradient(circle_at_80%_12%,_rgba(141,83,34,0.16),_transparent_24%),linear-gradient(180deg,_rgba(248,238,222,1),_rgba(241,229,208,1))]" />
         <div className="grain-overlay absolute inset-0 opacity-30" />
       </div>
 
-      <header className="nav-glass fixed inset-x-0 top-0 z-[100] border-b border-black/10 bg-background/80 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
-          <div className="min-w-0 space-y-1">
-            <p className="text-[10px] uppercase tracking-[0.45em] text-foreground/60">Uzbek Cuisine Project</p>
-            <p className="font-serif text-2xl leading-none">DODALAR</p>
-          </div>
-          <nav className="flex w-full items-center gap-3 overflow-x-auto pb-1 text-xs sm:text-sm md:w-auto md:gap-6 md:overflow-visible md:pb-0">
-            {anchors.map((anchor) => (
-              <a key={anchor.href} href={anchor.href} className="magnetic-link shrink-0 transition-opacity hover:opacity-70">
-                {anchor.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
+      <SiteHeader items={anchors} />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 pb-14 pt-40 sm:px-5 md:px-8 md:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pt-36">
+      <section className="hero-shell grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div className="flex flex-col justify-between">
           <div className="animate-enter space-y-6">
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-foreground/70">
@@ -311,11 +286,22 @@ export default function Home() {
                 single meal can transmit family memory, national identity, Silk Road history, and hospitality across
                 generations and geographic borders.
               </p>
+              <div className="hero-actions flex flex-wrap gap-3 pt-2">
+                <Button asChild size="lg" className="rounded-full px-[1.25em]">
+                  <a href="#research-notes">
+                    Explore findings
+                    <ArrowRight className="icon-em" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full border-black/10 bg-white/70 px-[1.25em]">
+                  <Link href="/cooking">Play the cooking game</Link>
+                </Button>
+              </div>
             </div>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="animate-enter-delayed rounded-[1.75rem] border-black/10 bg-white/72 shadow-[0_20px_60px_rgba(70,43,20,0.08)]">
+            <Card className="surface-card animate-enter-delayed border-black/10 bg-white/72 shadow-[0_20px_60px_rgba(70,43,20,0.08)]">
               <CardHeader className="px-5 pb-0">
                 <CardDescription className="text-xs uppercase tracking-[0.28em] text-foreground/55">
                   Topic
@@ -326,7 +312,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="animate-enter-delayed-2 rounded-[1.75rem] border-black/10 bg-white/72 shadow-[0_20px_60px_rgba(70,43,20,0.08)]">
+            <Card className="surface-card animate-enter-delayed-2 border-black/10 bg-white/72 shadow-[0_20px_60px_rgba(70,43,20,0.08)]">
               <CardHeader className="px-5 pb-0">
                 <CardDescription className="text-xs uppercase tracking-[0.28em] text-foreground/55">
                   Focus
@@ -337,7 +323,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="animate-enter-delayed-3 rounded-[1.75rem] border-black/10 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] shadow-[0_20px_60px_rgba(34,22,17,0.2)]">
+            <Card className="surface-card animate-enter-delayed-3 border-black/10 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] shadow-[0_20px_60px_rgba(34,22,17,0.2)]">
               <CardHeader className="px-5 pb-0">
                 <CardDescription className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">
                   Team
@@ -355,9 +341,15 @@ export default function Home() {
           <div className="aurora-orb-reverse absolute -bottom-10 -right-16 h-60 w-60 rounded-full bg-[color:var(--color-spice)]/24 blur-3xl" />
           <div className="absolute -left-4 top-10 h-36 w-36 rounded-full bg-[color:var(--color-saffron)]/35 blur-3xl" />
           <div className="absolute -right-4 bottom-12 h-40 w-40 rounded-full bg-[color:var(--color-spice)]/25 blur-3xl" />
-          <div className="shimmer-border relative overflow-hidden rounded-[2rem] border border-black/10 bg-[color:var(--color-ink)] p-3 shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem]">
-              <Image src="/food-memory-hero.jpg" alt="Traditional Uzbek-style meal shared at the table" fill className="object-cover" priority />
+          <div className="surface-panel shimmer-border relative overflow-hidden border border-black/10 bg-[color:var(--color-ink)] p-3 shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
+            <div className="surface-media relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Plov%20Tashkent.jpg"
+                alt="Uzbek plov being prepared in Tashkent"
+                fill
+                className="object-cover"
+                priority
+              />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,12,9,0.08),_rgba(18,12,9,0.68))]" />
               <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 text-[color:var(--color-paper)]">
                 <Badge className="rounded-full bg-[color:var(--color-saffron)] text-[color:var(--color-ink)]">Signature dish</Badge>
@@ -370,7 +362,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-5 md:px-8">
+      <section id="about" aria-labelledby="about-heading" className="section-shell-tight">
+        <div className="mb-8 max-w-3xl space-y-3">
+          <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Core ideas</p>
+          <h2 id="about-heading" className="font-serif text-[clamp(2.1rem,9vw,3.5rem)] leading-tight">
+            Three principles explain why osh matters beyond the plate.
+          </h2>
+          <p className="text-base leading-7 text-foreground/74 sm:text-lg sm:leading-8">
+            These themes frame the rest of the project: plov as a national symbol, as a disciplined cooking practice,
+            and as a communal ritual that carries memory.
+          </p>
+        </div>
         <div className="grid gap-5 md:grid-cols-3">
           {highlights.map((highlight, index) => {
             const Icon = highlight.icon
@@ -396,40 +398,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
-        <div className="mb-9 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Ingredient gallery</p>
-            <h2 className="mt-3 font-serif text-[clamp(2.75rem,12vw,4.5rem)] leading-none md:text-6xl">Constituent elements of osh</h2>
-          </div>
-          <p className="max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
-            These visual cards identify the foundational components of Uzbek plov: rice, carrots, meat, cumin, and
-            garlic. Together, these ingredients produce zirvak, aroma, texture, and culinary memory.
-          </p>
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {ingredientImages.map((ingredient) => (
-            <Card
-              key={ingredient.title}
-              className="motion-card reveal-stack overflow-hidden rounded-[1.8rem] border-black/10 bg-white/66 py-0 shadow-[0_18px_50px_rgba(70,43,20,0.06)] transition-transform duration-300 hover:-translate-y-1"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src={ingredient.image} alt={`${ingredient.title} illustration`} fill className="object-cover" />
-              </div>
-              <CardHeader className="px-5 pb-2">
-                <CardTitle className="font-serif text-3xl">{ingredient.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="px-5 pb-6 pt-0">
-                <p className="text-sm leading-7 text-foreground/72">{ingredient.text}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section id="research-notes" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
-        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-[color:var(--color-ink)] p-4 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.22)] sm:rounded-[2.25rem] sm:p-6 lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
+      <section id="research-notes" className="section-shell">
+        <div className="surface-panel grid gap-8 border border-black/10 bg-[color:var(--color-ink)] p-4 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.22)] sm:p-6 lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
           <div className="space-y-5">
             <Badge className="w-fit rounded-full bg-[color:var(--color-saffron)] px-4 py-1.5 text-[color:var(--color-ink)]">
               From the references
@@ -459,8 +429,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="heritage" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
-        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-white/58 p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:rounded-[2.25rem] sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
+      <section id="heritage" className="section-shell">
+        <div className="surface-panel grid gap-8 border border-black/10 bg-white/58 p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
           <div className="space-y-5">
             <Badge variant="outline" className="rounded-full border-black/10 bg-white/80 px-4 py-1.5">
               Why this dish matters
@@ -471,16 +441,6 @@ export default function Home() {
               etiquette. When families prepare it in another city or country, they reproduce not only a meal but also a
               sense of belonging.
             </p>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {flavorFacts.map((fact) => (
-                <div key={fact.label} className="rounded-2xl border border-black/10 bg-white/60 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--color-spice)]">
-                    {fact.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-foreground/70">{fact.text}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           <Tabs defaultValue="meaning" className="w-full">
@@ -514,16 +474,36 @@ export default function Home() {
 
             <TabsContent value="ingredients" className="pt-5">
               <Card className="rounded-[1.75rem] border-black/10 bg-white/75 shadow-none">
-                <CardContent className="space-y-4 px-6 py-6">
+                <CardContent className="space-y-5 px-6 py-6">
                   <div className="flex items-center gap-3">
                     <Sparkles className="h-5 w-5 text-[color:var(--color-spice)]" />
                     <p className="text-sm uppercase tracking-[0.3em] text-foreground/55">Foundation</p>
                   </div>
                   <p className="text-lg leading-8 text-foreground/78">
-                    Rice, carrots, onions, oil, meat, garlic, and cumin form the recognizable base. Although the exact
-                    balance may vary by region or household, the identity of the dish remains stable because families
-                    preserve the structure of the method.
+                    Rice, carrots, meat, garlic, and cumin form the recognizable base. The ingredient set may vary in
+                    proportion, but these elements preserve the structure families associate with authentic osh.
                   </p>
+                  <div className="grid gap-3">
+                    {flavorFacts.map((fact) => (
+                      <Card
+                        key={fact.label}
+                        className="surface-card overflow-hidden border-black/10 bg-white/72 py-0 shadow-[0_12px_34px_rgba(70,43,20,0.05)]"
+                      >
+                        <div className="grid gap-0 sm:grid-cols-[8.5rem_1fr]">
+                          <div className="relative min-h-[8.5rem] border-b border-black/10 bg-[rgba(214,162,76,0.12)] sm:min-h-full sm:border-b-0 sm:border-r">
+                            <Image src={fact.image} alt={`${fact.label} illustration`} fill className="object-cover p-4" />
+                          </div>
+                          <CardContent className="px-5 py-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--color-spice)]">
+                              {fact.label}
+                            </p>
+                            <p className="mt-2 font-serif text-2xl leading-tight text-foreground/88">{fact.title}</p>
+                            <p className="mt-3 text-sm leading-6 text-foreground/70">{fact.text}</p>
+                          </CardContent>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -546,11 +526,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-5 md:px-8 lg:grid-cols-[0.88fr_1.12fr]">
-        <Card className="rounded-[1.6rem] border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.24)] sm:rounded-[2rem]">
+      <section aria-labelledby="memory-heading" className="section-shell-tight grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+        <Card className="surface-panel border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_25px_80px_rgba(31,18,11,0.24)]">
           <CardHeader className="space-y-4 border-b border-white/10 px-5 py-6 sm:px-8 sm:py-8">
             <p className="text-xs uppercase tracking-[0.32em] text-[color:var(--color-paper-muted)]">Language and memory</p>
-            <CardTitle className="font-serif text-[clamp(2.25rem,10vw,3.75rem)] leading-tight md:text-5xl">
+            <CardTitle id="memory-heading" className="font-serif text-[clamp(2.25rem,10vw,3.75rem)] leading-tight md:text-5xl">
               The language surrounding plov is as significant as its taste.
             </CardTitle>
           </CardHeader>
@@ -567,7 +547,7 @@ export default function Home() {
         </Card>
 
         <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative min-h-[18rem] overflow-hidden rounded-[1.6rem] border border-black/10 sm:min-h-[22rem] sm:rounded-[2rem]">
+          <div className="surface-panel relative min-h-[18rem] overflow-hidden border border-black/10 sm:min-h-[22rem]">
             <Image src="/food-family.jpg" alt="Family preparing food together" fill className="object-cover transition-transform duration-700 hover:scale-105" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(28,17,12,0.08),_rgba(28,17,12,0.64))]" />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white">
@@ -579,7 +559,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Card className="rounded-[2rem] border-black/10 bg-white/65 shadow-[0_16px_46px_rgba(70,43,20,0.06)]">
+          <Card className="surface-panel border-black/10 bg-white/65 shadow-[0_16px_46px_rgba(70,43,20,0.06)]">
             <CardHeader className="space-y-3 px-6">
               <div className="flex items-center gap-3">
                 <Clock3 className="h-5 w-5 text-[color:var(--color-spice)]" />
@@ -599,7 +579,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ritual" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-16">
+      <section id="ritual" className="section-shell">
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Regional identity</p>
@@ -631,8 +611,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-4 sm:px-5 md:px-8">
-        <div className="grid gap-8 rounded-[1.6rem] border border-black/10 bg-[rgba(255,250,244,0.8)] p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:rounded-[2.2rem] sm:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
+      <section className="section-shell-tight pt-4">
+        <div className="surface-panel grid gap-8 border border-black/10 bg-[rgba(255,250,244,0.8)] p-4 shadow-[0_22px_70px_rgba(70,43,20,0.06)] sm:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Quick explanation</p>
             <h2 className="font-serif text-[clamp(2.35rem,10vw,3.75rem)] leading-tight md:text-5xl">Why this topic is analytically effective</h2>
@@ -655,7 +635,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="references" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-14">
+      <section id="references" className="section-shell">
         <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Research base</p>
@@ -667,35 +647,37 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <ul className="grid gap-4 md:grid-cols-2">
           {references.map((reference) => (
-            <a
-              key={`${reference.author}-${reference.title}`}
-              href={reference.url}
-              target="_blank"
-              rel="noreferrer"
-              className="motion-card group rounded-[1.5rem] border border-black/10 bg-white/64 p-5 shadow-[0_16px_46px_rgba(70,43,20,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/82"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex gap-3">
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--color-saffron)]/25 text-[color:var(--color-ink)]">
-                    <BookOpenText className="h-5 w-5" />
+            <li key={`${reference.author}-${reference.title}`}>
+              <a
+                href={reference.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open source: ${reference.title} by ${reference.author}`}
+                className="motion-card group block rounded-[1.5rem] border border-black/10 bg-white/64 p-5 shadow-[0_16px_46px_rgba(70,43,20,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/82"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex gap-3">
+                    <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--color-saffron)]/25 text-[color:var(--color-ink)]">
+                      <BookOpenText className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[color:var(--color-spice)]">
+                        {reference.author} <span className="font-normal text-foreground/50">({reference.date})</span>
+                      </p>
+                      <p className="mt-2 text-base font-semibold leading-7 text-foreground/82">{reference.title}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[color:var(--color-spice)]">
-                      {reference.author} <span className="font-normal text-foreground/50">({reference.date})</span>
-                    </p>
-                    <p className="mt-2 text-base font-semibold leading-7 text-foreground/82">{reference.title}</p>
-                  </div>
+                  <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-foreground/35 transition-colors group-hover:text-[color:var(--color-spice)]" />
                 </div>
-                <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-foreground/35 transition-colors group-hover:text-[color:var(--color-spice)]" />
-              </div>
-            </a>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      <section id="team" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 md:px-8 md:py-16">
+      <section id="team" className="section-shell">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/55">Project group</p>
@@ -713,10 +695,23 @@ export default function Home() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {teamMembers.map((member) => (
-              <Card key={member} className="motion-card rounded-[1.6rem] border-black/10 bg-white/68 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
-                <CardContent className="px-5 py-6">
-                  <p className="text-sm uppercase tracking-[0.28em] text-foreground/45">Group member</p>
-                  <p className="mt-3 text-xl font-semibold">{member}</p>
+              <Card key={member} className="surface-card motion-card border-black/10 bg-white/68 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
+                <CardContent className="flex items-center gap-4 px-5 py-5">
+                  <Avatar className="size-12 border border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/18">
+                    <AvatarFallback className="bg-transparent font-serif text-lg text-[color:var(--color-spice)]">
+                      {member
+                        .split(' ')
+                        .slice(0, 2)
+                        .map((part) => part[0])
+                        .join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0">
+                    <Badge variant="outline" className="rounded-full border-black/10 bg-white/70 px-3 py-1 text-[0.7rem] tracking-[0.22em]">
+                      Group member
+                    </Badge>
+                    <p className="mt-3 text-xl font-semibold">{member}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -725,7 +720,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-black/10 bg-[rgba(255,248,239,0.82)]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="page-shell flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm font-semibold">DODALAR | Plov / Osh Project</p>
             <p className="text-sm text-foreground/62">
@@ -735,6 +730,9 @@ export default function Home() {
           <p className="max-w-xl text-sm leading-7 text-foreground/62">
             Topic: Plov, also known as osh, as a cultural symbol of Uzbek cuisine, memory, and hospitality.
           </p>
+          <Button asChild variant="ghost" className="self-start rounded-full px-[1em] md:self-auto">
+            <a href="#main-content">Back to top</a>
+          </Button>
         </div>
       </footer>
     </main>

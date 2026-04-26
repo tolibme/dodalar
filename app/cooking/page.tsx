@@ -5,8 +5,12 @@ import { useState } from 'react'
 import { ArrowLeft, CheckCircle2, ChefHat, Flame, RotateCcw, Sparkles, Timer, Trophy } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
+import { Separator } from '@/components/ui/separator'
 
 const cookingSteps = [
   {
@@ -89,6 +93,7 @@ export default function CookingPage() {
   const currentStep = cookingSteps[stepIndex]
   const isFinished = stepIndex === cookingSteps.length
   const progress = Math.round((stepIndex / cookingSteps.length) * 100)
+  const remainingSteps = Math.max(0, cookingSteps.length - stepIndex)
   const heatLevel = Math.max(0, Math.min(100, 25 + stepIndex * 9 - mistakes * 3))
   const aromaLevel = Math.min(100, stepIndex * 13)
   const finalScore = Math.max(0, score - mistakes * 5)
@@ -124,26 +129,28 @@ export default function CookingPage() {
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main id="main-content" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_8%,_rgba(214,162,76,0.32),_transparent_26%),radial-gradient(circle_at_86%_18%,_rgba(164,82,43,0.2),_transparent_28%),linear-gradient(180deg,_rgba(248,238,222,1),_rgba(238,221,194,1))]" />
         <div className="grain-overlay absolute inset-0 opacity-30" />
       </div>
 
       <header className="nav-glass fixed inset-x-0 top-0 z-[100] border-b border-black/10 bg-background/80 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5 md:px-8">
-          <Link href="/" className="magnetic-link inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-70">
-            <ArrowLeft className="h-4 w-4" />
-            Back to project
-          </Link>
+        <div className="page-shell flex flex-wrap items-center justify-between gap-3 py-3">
+          <Button asChild variant="ghost" className="magnetic-link rounded-full px-[1em] py-[1.35em] text-sm font-semibold">
+            <Link href="/">
+              <ArrowLeft className="icon-em" />
+              Back to project
+            </Link>
+          </Button>
           <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-foreground/55 sm:text-sm sm:tracking-[0.28em]">
-            <ChefHat className="h-4 w-4" />
+            <ChefHat className="icon-em" />
             Osh game
           </div>
         </div>
       </header>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-28 sm:px-5 md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:pb-14 lg:pt-32">
+      <section className="hero-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:pb-14">
         <div className="space-y-7">
           <div className="space-y-5">
             <Badge className="rounded-full bg-[color:var(--color-saffron)] px-4 py-1.5 text-[color:var(--color-ink)]">
@@ -158,47 +165,88 @@ export default function CookingPage() {
             </p>
           </div>
 
+          <Card className="surface-card border-black/10 bg-white/62 shadow-[0_16px_46px_rgba(70,43,20,0.05)]">
+            <CardHeader className="pb-3">
+              <CardTitle className="font-serif text-2xl">How to play</CardTitle>
+              <CardDescription className="text-foreground/62">
+                Follow the canonical order of osh preparation and finish all eight stages without losing control of the sequence.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
+              <div className="rounded-[1em] border border-black/10 bg-white/70 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-spice)]">Reading the round</p>
+                <p className="mt-2 text-sm leading-6 text-foreground/72">
+                  Use the chef note and the current step label to identify what belongs next in the kazan.
+                </p>
+              </div>
+              <div className="rounded-[1em] border border-black/10 bg-white/70 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-spice)]">Scoring logic</p>
+                <p className="mt-2 text-sm leading-6 text-foreground/72">
+                  Correct actions add points; mistakes reduce the score and disrupt timing, heat, and flow.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="grid gap-4 sm:grid-cols-3">
-            <Card className="motion-card rounded-[1.5rem] border-black/10 bg-white/66">
+            <Card className="surface-card motion-card border-black/10 bg-white/66">
               <CardContent className="px-5 py-5">
                 <p className="text-xs uppercase tracking-[0.25em] text-foreground/50">Score</p>
                 <p className="mt-2 text-3xl font-semibold">{finalScore}</p>
+                <p className="mt-1 text-sm text-foreground/58">Target: finish with minimal mistakes.</p>
               </CardContent>
             </Card>
-            <Card className="motion-card rounded-[1.5rem] border-black/10 bg-white/66">
+            <Card className="surface-card motion-card border-black/10 bg-white/66">
               <CardContent className="px-5 py-5">
                 <p className="text-xs uppercase tracking-[0.25em] text-foreground/50">Progress</p>
                 <p className="mt-2 text-3xl font-semibold">{progress}%</p>
+                <p className="mt-1 text-sm text-foreground/58">{remainingSteps} step{remainingSteps === 1 ? '' : 's'} remaining.</p>
               </CardContent>
             </Card>
-            <Card className="motion-card rounded-[1.5rem] border-black/10 bg-[color:var(--color-ink)] text-[color:var(--color-paper)]">
+            <Card className="surface-card motion-card border-black/10 bg-[color:var(--color-ink)] text-[color:var(--color-paper)]">
               <CardContent className="px-5 py-5">
                 <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-paper-muted)]">Mistakes</p>
                 <p className="mt-2 text-3xl font-semibold">{mistakes}</p>
+                <p className="mt-1 text-sm text-[color:var(--color-paper-muted)]">Keep the sequence disciplined.</p>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        <Card className="shimmer-border relative overflow-hidden rounded-[1.6rem] border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_30px_90px_rgba(37,24,15,0.24)] sm:rounded-[2.2rem]">
+        <Card className="surface-panel shimmer-border relative overflow-hidden gap-0 border-black/10 bg-[color:var(--color-ink)] py-0 text-[color:var(--color-paper)] shadow-[0_30px_90px_rgba(37,24,15,0.24)]">
           <div className="aurora-orb absolute -left-20 bottom-8 h-56 w-56 rounded-full bg-[color:var(--color-spice)]/20 blur-3xl" />
           <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[color:var(--color-saffron)]/20 blur-3xl" />
-          <CardHeader className="relative border-b border-white/10 px-5 py-5 sm:px-6 sm:py-6 md:px-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
+          <CardHeader className="relative border-b border-white/10 px-5 pb-4 pt-3 sm:px-6 sm:pb-5 sm:pt-4 md:px-8">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <Badge className="rounded-full bg-[color:var(--color-saffron)] text-[color:var(--color-ink)]">
+                    {isFinished ? 'Completed' : `Step ${stepIndex + 1} of ${cookingSteps.length}`}
+                  </Badge>
+                  <Badge variant="outline" className="rounded-full border-white/12 bg-white/5 text-[color:var(--color-paper-muted)]">
+                    {progress}% progress
+                  </Badge>
+                </div>
                 <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-paper-muted)]">Kazan status</p>
-                <CardTitle className="mt-2 font-serif text-[clamp(2rem,9vw,3.25rem)]">
+                <CardTitle className="mt-1 font-serif text-[clamp(2rem,9vw,3.25rem)]">
                   {isFinished ? 'Osh preparation is complete' : `Step ${stepIndex + 1}: ${currentStep.label}`}
                 </CardTitle>
+                <CardDescription className="mt-3 max-w-2xl text-[color:var(--color-paper-muted)]">
+                  Maintain the traditional order from zirvak to steaming so the final dish stays coherent and recognizable.
+                </CardDescription>
+                <Progress
+                  value={progress}
+                  className="mt-4 h-[0.45em] max-w-xl bg-white/10 [&_[data-slot=progress-indicator]]:bg-[linear-gradient(90deg,_var(--color-saffron),_var(--color-spice))]"
+                />
               </div>
-              <button
-                type="button"
+              <Button
                 onClick={resetGame}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-[color:var(--color-paper-muted)] transition-colors hover:bg-white/10"
+                variant="outline"
+                className="rounded-full border-white/15 bg-white/5 px-[1em] text-[color:var(--color-paper-muted)] hover:bg-white/10 hover:text-[color:var(--color-paper)]"
               >
-                <RotateCcw className="h-4 w-4" />
+                <RotateCcw className="icon-em" />
                 Reset
-              </button>
+              </Button>
             </div>
           </CardHeader>
 
@@ -220,63 +268,133 @@ export default function CookingPage() {
                 <Meter icon={Sparkles} label="Aroma" value={aromaLevel} />
                 <Meter icon={Timer} label="Timing" value={Math.max(12, 100 - mistakes * 14)} />
               </div>
+
+              <Card className="surface-card border-white/10 bg-white/6 shadow-none">
+                <CardHeader className="pb-2">
+                  <CardTitle className="font-serif text-2xl">Round summary</CardTitle>
+                  <CardDescription className="text-[color:var(--color-paper-muted)]">
+                    A quick read on the current cooking state.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-3 pt-0 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
+                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">Current focus</p>
+                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">
+                      {isFinished ? 'Serving and review' : currentStep.label}
+                    </p>
+                  </div>
+                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
+                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">Discipline</p>
+                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">
+                      {mistakes === 0 ? 'Clean sequence so far' : `${mistakes} disruption${mistakes === 1 ? '' : 's'}`}
+                    </p>
+                  </div>
+                  <div className="rounded-[1em] border border-white/10 bg-white/5 p-4">
+                    <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-paper-muted)]">End goal</p>
+                    <p className="mt-2 text-sm font-medium text-[color:var(--color-paper)]">Separate grains and communal service.</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
             <div className="space-y-5">
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/7 p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">Chef note</p>
-                <p className="mt-3 text-base leading-7 sm:text-xl sm:leading-8">{isFinished ? 'The sequence has been completed. Serve the plov communally from the central platter.' : message}</p>
-              </div>
+              <Alert className="border-white/10 bg-white/7 text-[color:var(--color-paper)]">
+                <ChefHat className="icon-em text-[color:var(--color-saffron)]" />
+                <AlertTitle className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-paper-muted)]">
+                  Chef note
+                </AlertTitle>
+                <AlertDescription className="text-[color:var(--color-paper)] [&_p]:text-base [&_p]:leading-7 sm:[&_p]:text-xl sm:[&_p]:leading-8">
+                  <p>
+                    {isFinished
+                      ? 'The sequence has been completed. Serve the plov communally from the central platter.'
+                      : message}
+                  </p>
+                </AlertDescription>
+              </Alert>
 
               {isFinished ? (
-                <div className="rounded-[1.5rem] border border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/14 p-5">
-                  <div className="flex items-center gap-3">
-                    <Trophy className="h-6 w-6 text-[color:var(--color-saffron)]" />
-                    <p className="text-xl font-semibold sm:text-2xl">The osh sequence is complete.</p>
-                  </div>
-                  <p className="mt-3 leading-7 text-[color:var(--color-paper-muted)]">
-                    Final score: {finalScore}. A successful preparation preserves the canonical order: oil, meat,
-                    onions, carrots, seasoning, rice, steam, and service.
-                  </p>
-                </div>
+                <Alert className="border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/14 text-[color:var(--color-paper)]">
+                  <Trophy className="h-5 w-5 text-[color:var(--color-saffron)]" />
+                  <AlertTitle className="text-xl font-semibold sm:text-2xl">The osh sequence is complete.</AlertTitle>
+                  <AlertDescription className="text-[color:var(--color-paper-muted)] [&_p]:leading-7">
+                    <p>
+                      Final score: {finalScore}. A successful preparation preserves the canonical order: oil, meat,
+                      onions, carrots, seasoning, rice, steam, and service.
+                    </p>
+                  </AlertDescription>
+                </Alert>
               ) : (
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {options.map((option) => (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => chooseAction(option.id)}
-                      className="motion-card rounded-[1.25rem] border border-white/10 bg-white/8 p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:var(--color-saffron)]/45 hover:bg-white/14"
-                    >
-                      <span className="font-serif text-2xl text-[color:var(--color-saffron)] sm:text-3xl">{option.mark}</span>
-                      <span className="mt-3 block text-base font-semibold">{option.label}</span>
-                    </button>
-                  ))}
-                </div>
+                <Card className="surface-card border-white/10 bg-white/6 shadow-none">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="font-serif text-2xl">Available actions</CardTitle>
+                    <CardDescription className="text-[color:var(--color-paper-muted)]">
+                      Only one action preserves the authentic sequence at this moment.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
+                    {options.map((option) => (
+                      <Button
+                        key={option.id}
+                        onClick={() => chooseAction(option.id)}
+                        variant="ghost"
+                        className="surface-card motion-card h-auto flex-col items-start border border-white/10 bg-white/8 p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:var(--color-saffron)]/45 hover:bg-white/14 hover:text-[color:var(--color-paper)]"
+                      >
+                        <Badge className="rounded-full bg-[color:var(--color-saffron)]/18 px-2.5 py-1 font-serif text-base text-[color:var(--color-saffron)] hover:bg-[color:var(--color-saffron)]/18">
+                          {option.mark}
+                        </Badge>
+                        <span className="mt-3 block text-base font-semibold">{option.label}</span>
+                      </Button>
+                    ))}
+                  </CardContent>
+                </Card>
               )}
 
-              <div className="grid gap-2">
-                {cookingSteps.map((step) => {
-                  const isDone = completedSteps.includes(step.id)
-                  const isCurrent = !isFinished && currentStep.id === step.id
+              <Card className="surface-card border-white/10 bg-white/6 shadow-none">
+                <CardHeader className="pb-3">
+                  <CardTitle className="font-serif text-2xl">Sequence tracker</CardTitle>
+                  <CardDescription className="text-[color:var(--color-paper-muted)]">
+                    Watch the current position and completed stages as the dish develops.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-2 pt-0">
+                  {cookingSteps.map((step, index) => {
+                    const isDone = completedSteps.includes(step.id)
+                    const isCurrent = !isFinished && currentStep.id === step.id
 
-                  return (
-                    <div
-                      key={step.id}
-                      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm ${
-                        isDone
-                          ? 'border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/12'
-                          : isCurrent
-                            ? 'border-white/20 bg-white/10'
-                            : 'border-white/8 bg-white/5 text-[color:var(--color-paper-muted)]'
-                      }`}
-                    >
-                      {isDone ? <CheckCircle2 className="h-4 w-4 text-[color:var(--color-saffron)]" /> : <span>{step.mark}</span>}
-                      <span>{step.label}</span>
-                    </div>
-                  )
-                })}
-              </div>
+                    return (
+                      <div key={step.id}>
+                        <div
+                          className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm ${
+                            isDone
+                              ? 'border-[color:var(--color-saffron)]/35 bg-[color:var(--color-saffron)]/12'
+                              : isCurrent
+                                ? 'border-white/20 bg-white/10'
+                                : 'border-white/8 bg-white/5 text-[color:var(--color-paper-muted)]'
+                          }`}
+                        >
+                          {isDone ? (
+                            <CheckCircle2 className="icon-em text-[color:var(--color-saffron)]" />
+                          ) : (
+                            <Badge
+                              variant="outline"
+                              className="rounded-full border-white/10 bg-transparent font-serif text-[0.9rem] text-inherit"
+                            >
+                              {step.mark}
+                            </Badge>
+                          )}
+                          <span className="font-medium">{step.label}</span>
+                          {isCurrent ? (
+                            <Badge className="ml-auto rounded-full bg-white/10 text-[color:var(--color-paper)] hover:bg-white/10">
+                              Current
+                            </Badge>
+                          ) : null}
+                        </div>
+                        {index < cookingSteps.length - 1 ? <Separator className="my-1 bg-transparent" /> : null}
+                      </div>
+                    )
+                  })}
+                </CardContent>
+              </Card>
             </div>
           </CardContent>
         </Card>
@@ -290,17 +408,15 @@ function Meter({ icon: Icon, label, value }: { icon: LucideIcon; label: string; 
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-[color:var(--color-paper-muted)]">
         <span className="flex items-center gap-2">
-          <Icon className="h-4 w-4" />
+          <Icon className="icon-em" />
           {label}
         </span>
         <span>{value}%</span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-white/10">
-        <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,_var(--color-saffron),_var(--color-spice))] transition-all duration-500"
-          style={{ width: `${value}%` }}
-        />
-      </div>
+      <Progress
+        value={value}
+        className="h-[0.5em] bg-white/10 [&_[data-slot=progress-indicator]]:bg-[linear-gradient(90deg,_var(--color-saffron),_var(--color-spice))]"
+      />
     </div>
   )
 }

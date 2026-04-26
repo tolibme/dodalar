@@ -42,6 +42,16 @@
   --color-ink: #241813;
   --color-spice: #a4522b;
   --color-saffron: #d6a24c;
+  --shell-max-width: 80em;
+  --shell-gutter: clamp(1em, 3vw, 2em);
+  --section-space: clamp(3.5em, 7vw, 4.75em);
+  --section-space-tight: clamp(2.5em, 5vw, 3.5em);
+  --hero-space-top: clamp(8em, 14vw, 10em);
+  --hero-space-bottom: clamp(3em, 6vw, 4em);
+  --header-offset: 8.5em;
+  --radius-card-surface: 1.5em;
+  --radius-panel-surface: 1.9em;
+  --radius-media-surface: 1.4em;
 }
 
 .dark {
@@ -133,9 +143,14 @@
       radial-gradient(circle at top, rgba(214, 162, 76, 0.14), transparent 28%);
   }
 
+  ::selection {
+    background: color-mix(in oklab, var(--color-saffron) 46%, white);
+    color: var(--color-ink);
+  }
+
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 8.5rem;
+    scroll-padding-top: var(--header-offset);
   }
 
   img,
@@ -149,7 +164,7 @@
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(1.75em);
   }
 
   to {
@@ -161,7 +176,7 @@
 @keyframes nav-drop {
   from {
     opacity: 0;
-    transform: translateY(-18px) scale(0.98);
+    transform: translateY(-1.125em) scale(0.98);
   }
 
   to {
@@ -173,8 +188,8 @@
 @keyframes card-rise {
   from {
     opacity: 0;
-    transform: translateY(34px) scale(0.97);
-    filter: blur(8px);
+    transform: translateY(2.125em) scale(0.97);
+    filter: blur(0.5em);
   }
 
   to {
@@ -201,7 +216,7 @@
   }
 
   50% {
-    transform: translate3d(22px, -16px, 0) scale(1.16);
+    transform: translate3d(1.375em, -1em, 0) scale(1.16);
   }
 }
 
@@ -243,6 +258,72 @@
     box-shadow: 0 12px 45px rgba(70, 43, 20, 0.08);
   }
 
+  .page-shell {
+    width: min(100%, var(--shell-max-width));
+    margin-inline: auto;
+    padding-inline: var(--shell-gutter);
+  }
+
+  .section-shell {
+    width: min(100%, var(--shell-max-width));
+    margin-inline: auto;
+    padding-inline: var(--shell-gutter);
+    padding-block: var(--section-space);
+  }
+
+  .section-shell-tight {
+    width: min(100%, var(--shell-max-width));
+    margin-inline: auto;
+    padding-inline: var(--shell-gutter);
+    padding-block: var(--section-space-tight);
+  }
+
+  .hero-shell {
+    width: min(100%, var(--shell-max-width));
+    margin-inline: auto;
+    padding-inline: var(--shell-gutter);
+    padding-top: var(--hero-space-top);
+    padding-bottom: var(--hero-space-bottom);
+  }
+
+  .surface-card {
+    border-radius: var(--radius-card-surface);
+  }
+
+  .surface-panel {
+    border-radius: var(--radius-panel-surface);
+  }
+
+  .surface-media {
+    border-radius: var(--radius-media-surface);
+  }
+
+  .icon-em {
+    width: 1em;
+    height: 1em;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 200;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--color-spice) 28%, transparent);
+    background: rgba(255, 248, 239, 0.96);
+    color: var(--color-ink);
+    padding: 0.7em 1em;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transform: translateY(-220%);
+    transition: transform 180ms ease;
+    box-shadow: 0 10px 35px rgba(70, 43, 20, 0.12);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
   .nav-glass::after {
     content: '';
     position: absolute;
@@ -271,6 +352,19 @@
 
   .magnetic-link:hover::after {
     transform: scaleX(1);
+  }
+
+  .magnetic-link:focus-visible::after,
+  .magnetic-link[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  .magnetic-link[aria-current='page'] {
+    color: var(--color-spice);
+  }
+
+  .hero-actions [data-slot='button'] {
+    min-height: 2.9em;
   }
 
   .animate-enter {
@@ -303,12 +397,6 @@
       transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
       box-shadow 320ms ease,
       border-color 320ms ease;
-  }
-
-  .motion-card:hover {
-    border-color: rgba(164, 82, 43, 0.24);
-    box-shadow: 0 24px 68px rgba(70, 43, 20, 0.13);
-    transform: translateY(-6px) rotateX(1deg);
   }
 
   .shimmer-border::before {
@@ -346,14 +434,22 @@
     mix-blend-mode: multiply;
   }
 
+  @media (hover: hover) {
+    .motion-card:hover {
+      border-color: rgba(164, 82, 43, 0.24);
+      box-shadow: 0 24px 68px rgba(70, 43, 20, 0.13);
+      transform: translateY(-6px) rotateX(1deg);
+    }
+  }
+
   @media (max-width: 640px) {
     .nav-glass {
-      max-height: 8.75rem;
+      max-height: 8.75em;
     }
 
-    .motion-card:hover {
-      box-shadow: 0 16px 42px rgba(70, 43, 20, 0.08);
-      transform: none;
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 
