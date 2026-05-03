@@ -37,11 +37,16 @@
   --sidebar-accent-foreground: oklch(0.12 0 0);
   --sidebar-border: oklch(0.92 0 0);
   --sidebar-ring: oklch(0.12 0 0);
-  --color-paper: #f6ead8;
+  --color-paper: #f7ead8;
   --color-paper-muted: rgba(246, 234, 216, 0.72);
-  --color-ink: #241813;
-  --color-spice: #a4522b;
-  --color-saffron: #d6a24c;
+  --color-ink: #1a1008;
+  --color-spice: #c24a24;
+  --color-saffron: #e8a020;
+  --color-cobalt: #1a4e8a;
+  --color-cobalt-light: #2563b0;
+  --color-teal: #0d7a6e;
+  --color-ruby: #9b2335;
+  --color-emerald: #2a6b4f;
   --shell-max-width: 80em;
   --shell-gutter: clamp(1em, 3vw, 2em);
   --section-space: clamp(3.5em, 7vw, 4.75em);
@@ -440,6 +445,52 @@
       box-shadow: 0 24px 68px rgba(70, 43, 20, 0.13);
       transform: translateY(-6px) rotateX(1deg);
     }
+  }
+
+  .photo-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .photo-overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(26, 16, 8, 0.96) 0%,
+      rgba(26, 16, 8, 0.64) 45%,
+      rgba(26, 16, 8, 0.18) 100%
+    );
+  }
+
+  .section-fullbleed {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
+  .uzbek-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%231a4e8a' stroke-width='1.5' opacity='0.18'/%3E%3Cpath d='M40 16L64 40L40 64L16 40Z' fill='none' stroke='%23e8a020' stroke-width='1' opacity='0.22'/%3E%3Ccircle cx='40' cy='40' r='6' fill='none' stroke='%231a4e8a' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+
+  .timeline-line {
+    position: relative;
+  }
+
+  .timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 2.5rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-cobalt), var(--color-saffron), var(--color-spice));
+    opacity: 0.3;
   }
 
   @media (max-width: 640px) {
