@@ -11,6 +11,7 @@ const pageNavItems = [
   { href: '/history', label: 'History' },
   { href: '/diaspora', label: 'Diaspora' },
   { href: '/cooking', label: 'Cooking Game' },
+  { href: '/video', label: 'Video' },
 ]
 
 const stories = [
@@ -277,18 +278,6 @@ export default function DiasporaPage() {
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-black/10 bg-[rgba(255,248,239,0.82)]">
-        <div className="page-shell flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold">DODALAR | Plov / Osh Project</p>
-            <p className="text-sm text-foreground/60">ILC 2250 — Food as Cultural Memory</p>
-          </div>
-          <Button asChild variant="ghost" className="self-start rounded-full px-[1em] md:self-auto">
-            <Link href="/">← Back to main project</Link>
-          </Button>
-        </div>
-      </footer>
     </main>
   )
 }

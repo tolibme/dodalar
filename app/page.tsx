@@ -30,6 +30,7 @@ const anchors = [
   { href: '/history', label: 'History' },
   { href: '/diaspora', label: 'Diaspora' },
   { href: '/cooking', label: 'Cooking Game' },
+  { href: '/video', label: 'Video' },
   { href: '#team', label: 'Team' },
 ]
 
@@ -789,34 +790,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ── FOOTER ── */}
-      <footer
-        className="border-t border-black/10"
-        style={{ background: `linear-gradient(180deg, rgba(255,248,239,0.9), rgba(247,234,216,1))` }}
-      >
-        <div className="uzbek-pattern w-full py-2 opacity-30" />
-        <div className="page-shell flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold">DODALAR | Plov / Osh Project</p>
-            <p className="text-sm text-foreground/60">
-              ILC 2250 — Food as Cultural Memory: Preserving Identity Through Immigration
-            </p>
-          </div>
-          <div className="flex gap-3 text-sm text-foreground/60">
-            <Link href="/gallery" className="hover:text-[color:var(--color-cobalt)]">Gallery</Link>
-            <span>·</span>
-            <Link href="/history" className="hover:text-[color:var(--color-cobalt)]">History</Link>
-            <span>·</span>
-            <Link href="/diaspora" className="hover:text-[color:var(--color-cobalt)]">Diaspora</Link>
-            <span>·</span>
-            <Link href="/cooking" className="hover:text-[color:var(--color-cobalt)]">Cooking Game</Link>
-          </div>
-          <Button asChild variant="ghost" className="self-start rounded-full px-[1em] md:self-auto">
-            <a href="#main-content">Back to top</a>
-          </Button>
-        </div>
-      </footer>
     </main>
   )
 }
