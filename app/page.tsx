@@ -139,16 +139,16 @@ const faqItems = [
 ]
 
 const teamMembers = [
-  'Nurmuxamedov Xurshid',
-  'Xabibullaev Shohjahon',
-  'Kamronbek Yunusov',
-  'Nikolay Tsoy',
-  'Qurbon Bagirov',
-  'Umidjon Normuratov',
-  'Sarvar Sultanov',
-  'Kim Vladimir',
-  'Amirxon Siddiqov',
-  'Tolibjon Olimjonov',
+  { name: 'Nurmuxamedov Xurshid', role: 'Group member' },
+  { name: 'Xabibullaev Shohjahon', role: 'Public speaker' },
+  { name: 'Kamronbek Yunusov', role: 'Lead researcher' },
+  { name: 'Nikolay Tsoy', role: 'Video editor' },
+  { name: 'Qurbon Bagirov', role: 'Creative designer' },
+  { name: 'Umidjon Normuratov', role: 'Project leader' },
+  { name: 'Sarvar Sultanov', role: 'Group member' },
+  { name: 'Kim Vladimir', role: 'Content writer' },
+  { name: 'Amirxon Siddiqov', role: 'Research analyst' },
+  { name: 'Tolibjon Olimjonov', role: 'Group member' },
 ]
 
 const memberColors = [
@@ -527,7 +527,7 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr]">
           <div className="surface-panel relative min-h-[18rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.14)] sm:min-h-[22rem]">
             <Image
-              src="/food-family.jpg"
+              src="/12.jpg"
               alt="Family preparing food together"
               fill
               className="object-cover transition-transform duration-700 hover:scale-105"
@@ -757,7 +757,7 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2">
             {teamMembers.map((member, i) => (
               <Card
-                key={member}
+                key={member.name}
                 className="surface-card motion-card border-0 shadow-[0_16px_46px_rgba(0,0,0,0.08)]"
               >
                 <CardContent className="flex items-center gap-4 px-5 py-5">
@@ -768,7 +768,7 @@ export default function Home() {
                     <AvatarFallback
                       className="bg-transparent font-serif text-lg font-bold text-white"
                     >
-                      {member
+                      {member.name
                         .split(' ')
                         .slice(0, 2)
                         .map((part) => part[0])
@@ -780,9 +780,9 @@ export default function Home() {
                       variant="outline"
                       className="rounded-full border-black/10 bg-white/70 px-3 py-1 text-[0.7rem] tracking-[0.22em]"
                     >
-                      Group member
+                      {member.role}
                     </Badge>
-                    <p className="mt-3 truncate text-xl font-semibold">{member}</p>
+                    <p className="mt-3 truncate text-xl font-semibold">{member.name}</p>
                   </div>
                 </CardContent>
               </Card>
