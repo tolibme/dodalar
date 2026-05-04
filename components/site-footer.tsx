@@ -61,7 +61,13 @@ export function SiteFooter() {
                 <div className="pt-0.5">
                   <p className="font-semibold leading-snug text-white/90">Webster University</p>
                   <p className="text-sm leading-snug text-white/55">in Tashkent</p>
-                  
+                  <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-white/60">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-saffron)]" />
+                    AI notice
+                  </div>
+                  <p className="mt-2 text-xs leading-snug text-white/45">
+                    AI was used to support select features and content refinement.
+                  </p>
                 </div>
               </div>
             </div>
@@ -71,7 +77,10 @@ export function SiteFooter() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-2 border-t border-white/[0.07] pt-6 text-[0.72rem] text-white/25 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 DODALAR · Uzbek Cuisine Project</p>
-          <p>Webster University in Tashkent (ILC 2250 course)</p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p>Webster University in Tashkent (ILC 2250 course)</p>
+            
+          </div>
         </div>
       </div>
     </footer>

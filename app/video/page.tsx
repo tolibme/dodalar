@@ -34,6 +34,10 @@ export default function VideoPage() {
             <p className="max-w-2xl text-foreground/70">
               A documentary look at Uzbek plov — its preparation, cultural meaning, and place in collective memory.
             </p>
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-[var(--color-paper)]/70 px-3 py-1 text-xs uppercase tracking-[0.2em] text-foreground/60 shadow-[0_10px_30px_rgba(36,24,19,0.08)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-saffron)]" />
+              Filmed on location at Kamolon Osh, a noted plov house.
+            </div>
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-black/10 bg-black shadow-xl">
